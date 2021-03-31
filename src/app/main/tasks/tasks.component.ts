@@ -14,6 +14,10 @@ import { TaskService } from '../task.service';
 export class TasksComponent implements OnInit, OnDestroy {
   toDaysTasks: Task[] = [];
   listSubscription: Subscription;
+  NTasks: Task[] = [];
+  RTasks: Task[] = [];
+  GTasks: Task[] = [];
+  YTasks: Task[] = [];
   // cd: Day;
   // dateSubscription: Subscription;
   // monthsList: {m: string, nd: number}[] = [];
@@ -37,22 +41,37 @@ export class TasksComponent implements OnInit, OnDestroy {
     //   };
     // });
     this.toDaysTasks = this.taskService.GetToDaysTasks();
+    this.setLists();
     this.listSubscription = this.taskService.dayTAsksChanged.subscribe(tasks => {
       this.toDaysTasks = [];
       this.toDaysTasks.push(...tasks);
+      this.setLists();
     });
     console.log('this.toDaysTasks -> ', this.toDaysTasks);
     // this.router.navigate(['./task-list'], {relativeTo: this.route});
+
+
   }
 
-  RotateRight() {
-    const last = this.toDaysTasks.pop();
-    this.toDaysTasks.unshift(last);
+  RotateRight(list: Task[]) {
+    const last = list.pop();
+    list.unshift(last);
   }
 
-  RotateLeft() {
-    const first = this.toDaysTasks.shift();
-    this.toDaysTasks.push(first);
+  RotateLeft(list: Task[]) {
+    const first = list.shift();
+    list.push(first);
+  }
+
+  FilterList(filter: string) {
+    return this.toDaysTasks.filter(t => t.color === filter).slice();
+  }
+
+  setLists() {
+    this.NTasks = this.FilterList('');
+    this.RTasks = this.FilterList('red');
+    this.YTasks = this.FilterList('yellow');
+    this.GTasks = this.FilterList('green');
   }
 
   // Perv() {

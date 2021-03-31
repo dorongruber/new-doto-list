@@ -8,6 +8,10 @@ import { Day } from '../day.model';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
+
 @Component({
   selector: 'app-newtaskform',
   templateUrl: './newtaskform.component.html',
@@ -20,7 +24,7 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
   changedDateSub: Subscription;
   taskForm: FormGroup;
   dateStr: string;
-
+  selectedFile: ImageSnippet;
   constructor(
     private calendarService: CalendarService,
     private controlsService: ControlsService,
@@ -57,7 +61,8 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
       date: new FormControl({value: this.dateStr, disabled: false}, [
         Validators.required
       ]),
-      color: new FormControl('', Validators.required)
+      color: new FormControl('', Validators.required),
+      image: new FormControl('')
     });
   }
 
@@ -71,6 +76,22 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
       form.value.color,
       date.getTime());
     this.taskService.NewTask(newtask);
+
+  }
+
+  ProcessFile(imageInput: any) {
+    console.log('imageInput => ', imageInput.target.files[0]);
+    const file: File = imageInput.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', (event: any) => {
+        this.selectedFile = new ImageSnippet(event.target.result, file);
+        console.log('this.selectedFile => ', event.target.result);
+      });
+
+      reader.readAsDataURL(file);
+    }
 
   }
 

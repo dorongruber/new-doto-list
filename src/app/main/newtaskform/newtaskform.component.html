@@ -45,16 +45,27 @@
   </mat-form-field>
 
 
+    <label for="file">Image</label>
+    <input
+    class="input"
+    id="file"
+    type="file"
+    placeholder="image"
+    formControlName="image"
+    (change)="ProcessFile($event)"
+    #fileInput>
+    <button type="button" (click)="fileInput.click()"> Select File</button>
 
-  <!-- <div class="radio-group-container">
-    <mat-form-field
-    appearance="outline">
-      <mat-label>Red</mat-label>
-      <input
-      type="radio"
-      formControlName="color">
-    </mat-form-field>
-  </div> -->
+    <div class="image-preview-container">
+      <ng-container *ngIf="selectedFile">
+        <img
+        [src]="selectedFile.src"
+        alt="Image Preview"
+        class="image-preview">
+      </ng-container>
+    </div>
+
+
 
 
     <mat-radio-group class="radio-buttons-container" formControlName="color">

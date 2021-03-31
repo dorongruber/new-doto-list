@@ -2,47 +2,47 @@
 
   <app-calendar [calendartasksList]="toDaysTasks" [currentRoute]="'day'"></app-calendar>
   <h3>Unmarked Events:</h3>
-  <ng-container *ngIf="toDaysTasks.length === 0">
+  <ng-container *ngIf="NTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
-  <ng-container *ngIf="toDaysTasks.length > 0">
+  <ng-container *ngIf="NTasks.length > 0">
       <div class="tasks-list-container">
-    <mat-icon (click)="RotateLeft()" class="icon left">keyboard_arrow_left</mat-icon>
-    <app-task-list [taskList]="toDaysTasks" [type]="'card'"></app-task-list>
-    <mat-icon (click)="RotateRight()" class="icon right">keyboard_arrow_right</mat-icon>
+    <mat-icon (click)="RotateLeft(NTasks)" class="icon left">keyboard_arrow_left</mat-icon>
+    <app-task-list [taskList]="NTasks" [type]="'card'"></app-task-list>
+    <mat-icon (click)="RotateRight(NTasks)" class="icon right">keyboard_arrow_right</mat-icon>
   </div>
   </ng-container>
   <h3> Red Marked Events:</h3>
-  <ng-container *ngIf="toDaysTasks.length === 0">
+  <ng-container *ngIf="RTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
-  <ng-container *ngIf="toDaysTasks.length > 0">
+  <ng-container *ngIf="RTasks.length > 0">
       <div class="tasks-list-container">
-    <mat-icon (click)="RotateLeft()" class="icon left">keyboard_arrow_left</mat-icon>
-    <app-task-list [taskList]="toDaysTasks" [type]="'card'"></app-task-list>
-    <mat-icon (click)="RotateRight()" class="icon right">keyboard_arrow_right</mat-icon>
+    <mat-icon (click)="RotateLeft(RTasks)" class="icon left">keyboard_arrow_left</mat-icon>
+    <app-task-list [taskList]="RTasks" [type]="'card'"></app-task-list>
+    <mat-icon (click)="RotateRight(RTasks)" class="icon right">keyboard_arrow_right</mat-icon>
   </div>
   </ng-container>
   <h3> Green Marked Events:</h3>
-  <ng-container *ngIf="toDaysTasks.length === 0">
+  <ng-container *ngIf="GTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
-  <ng-container *ngIf="toDaysTasks.length > 0">
+  <ng-container *ngIf="GTasks.length > 0">
       <div class="tasks-list-container">
-    <mat-icon (click)="RotateLeft()" class="icon left">keyboard_arrow_left</mat-icon>
-    <app-task-list [taskList]="toDaysTasks" [type]="'card'"></app-task-list>
-    <mat-icon (click)="RotateRight()" class="icon right">keyboard_arrow_right</mat-icon>
+    <mat-icon (click)="RotateLeft(GTasks)" class="icon left">keyboard_arrow_left</mat-icon>
+    <app-task-list [taskList]="GTasks" [type]="'card'"></app-task-list>
+    <mat-icon (click)="RotateRight(GTasks)" class="icon right">keyboard_arrow_right</mat-icon>
   </div>
   </ng-container>
   <h3> Yellow Marked Events:</h3>
-  <ng-container *ngIf="toDaysTasks.length === 0">
+  <ng-container *ngIf="YTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
-  <ng-container *ngIf="toDaysTasks.length > 0">
+  <ng-container *ngIf="YTasks.length > 0">
       <div class="tasks-list-container">
-        <mat-icon (click)="RotateLeft()" class="icon left">keyboard_arrow_left</mat-icon>
-        <app-task-list [taskList]="toDaysTasks" [type]="'card'"></app-task-list>
-        <mat-icon (click)="RotateRight()" class="icon right">keyboard_arrow_right</mat-icon>
+        <mat-icon (click)="RotateLeft(YTasks)" class="icon left">keyboard_arrow_left</mat-icon>
+        <app-task-list [taskList]="YTasks" [type]="'card'"></app-task-list>
+        <mat-icon (click)="RotateRight(YTasks)" class="icon right">keyboard_arrow_right</mat-icon>
       </div>
   </ng-container>
 
