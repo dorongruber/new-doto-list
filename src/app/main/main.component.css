@@ -6,7 +6,6 @@
   display: flex;
   justify-content: space-evenly;
   padding: 1em;
-  background: rgb(55, 58, 80);
   box-sizing: border-box;
 }
 
@@ -19,7 +18,7 @@
 
 .main-page-container {
   background: rgb(42,45,67);
-  height: 92vh;
+  height: 84vh;
 }
 
 ::ng-deep .mat-drawer {
