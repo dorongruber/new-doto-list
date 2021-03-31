@@ -1,0 +1,27 @@
+<div class="card-container">
+  <div class="image-container">
+    <img class="image" src="../../../../../../assets/images/1536016414.png">
+  </div>
+
+  <div class="content-container">
+    <div class="header-container">
+      <h3 class="title">
+        {{ task.title }}
+      </h3>
+    </div>
+    <div class="content">
+      {{ task.content }}
+    </div>
+    <div class="date">
+      <mat-icon class="icon" >access_time</mat-icon>
+      <div>
+        {{ task.date }}
+      </div>
+    </div>
+
+    <div class="footer-container">
+      <button (click)="DeleteTask()">Delete</button>
+    </div>
+  </div>
+
+</div>

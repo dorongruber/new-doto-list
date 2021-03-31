@@ -1,0 +1,38 @@
+
+.form-content {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 1.5em !important;
+  font-size: 12px;
+}
+
+input {
+  color: white;
+}
+
+@media only screen and (min-width: 280px) {
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 550px) {
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    font-size: 20px;
+    width: 52vw;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    font-size: 10px;
+  }
+}

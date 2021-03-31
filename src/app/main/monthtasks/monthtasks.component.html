@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="header-container">
+    <mat-icon class="icon" (click)="onLogout()">keyboard_arrow_left</mat-icon>
+    <h3 class="title"> Calendar </h3>
+  </div>
+  <div class="calendar-content-conteiner">
+    <app-calendar [calendartasksList]="monthTasksList" [currentRoute]="'month'"></app-calendar>
+  </div>
+
+  <ng-container *ngIf="isLoading">
+    <div class="task-list-container spinner">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+  </ng-container>
+  <div class="list-header-container" *ngIf="!isLoading">
+    <h3 class="events-list-header">Upcoming Events:</h3>
+  </div>
+  <div class="task-list-container" *ngIf="!isLoading">
+
+    <app-task-list [taskList]="monthTasksList" [type]="'panel'"></app-task-list>
+  </div>
+</div>

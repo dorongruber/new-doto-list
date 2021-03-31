@@ -1,0 +1,23 @@
+
+
+<ng-container *ngIf="type === 'panel'">
+  <div class="tasks-list-container">
+    <app-task-item
+    *ngFor="let task of taskList; index as i;"
+    [task]="task"
+    [index]="i"
+    [type]="type"></app-task-item>
+  </div>
+</ng-container>
+<ng-container *ngIf="type === 'card'">
+  <div class="cards-list-container">
+    <app-task-item
+    *ngFor="let task of taskList; index as i;"
+    [task]="task"
+    [index]="i"
+    [type]="type"
+    class="task"
+    [appPosition]="i"
+    ></app-task-item>
+  </div>
+</ng-container>

@@ -1,0 +1,23 @@
+<div class="calender-container">
+  <!-- <ul class="container ">
+    <li (click)="Perv()" class="perv">&#10094;</li>
+    <li class="date">{{monthsList[cd.m].m}}</li>
+    <li (click)='Next()' class="next">&#10095;</li>
+  </ul>
+  <ul class="container days-in-month ">
+    <li class="diw" *ngFor="let day of showDay()">
+
+      <a class="day">{{day.n}}</a>
+    </li>
+    <li class="day test" *ngFor="let i of days">
+      <a class="day" id="{{i}}" (click)='SelectedDay(cd.m,i)'>{{i}}</a>
+
+    </li>
+  </ul> -->
+  <ng-container *ngIf="currentRoute === 'month'">
+    <app-monthcalendar [monthTasksList]="calendartasksList"></app-monthcalendar>
+  </ng-container>
+  <ng-container *ngIf="currentRoute === 'day'">
+    <app-daycalendar ></app-daycalendar>
+  </ng-container>
+</div>

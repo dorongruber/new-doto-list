@@ -1,0 +1,81 @@
+.container {
+  width: 100%;
+  height: 92vh;
+}
+
+.calendar-content-conteiner {
+  display: flex;
+  justify-content: center;
+  margin-top: 0em;
+}
+
+.task-list-container {
+  background: rgb(42, 45, 67);
+  margin: 0em;
+  height: 29vh;
+  overflow: scroll;
+}
+
+.events-list-header {
+  display: flex;
+  justify-content: center;
+  padding-top: .5em;
+  font-weight: 200;
+  color: white;
+  box-sizing: border-box;
+  margin: 0;
+  background: rgb(42, 45, 67);
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: .5em;
+  box-sizing: border-box;
+  background: rgb(52, 58, 80);
+}
+
+.form-tasks-container {
+  margin-top: 0em;
+}
+
+
+.title {
+  margin: 0;
+  line-height: 2em;
+  opacity: .6;
+  color: white;
+  padding-top: .1em;
+  box-sizing: border-box;
+}
+
+.icon {
+  font-size: 35px;
+  width: 1em;
+  height: 1em;
+  margin-right: 30vw;
+  color: white;
+}
+
+::ng-deep .mat-drawer-container{
+  background-color: transparent;
+  height: 92vh;
+}
+
+
+
+
+.main-page-container {
+  background: rgba(23, 60, 96, .7);
+}
+
+::ng-deep .mat-drawer {
+  background: rgba(23, 60, 96, 1);
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+  box-sizing: border-box;
+}

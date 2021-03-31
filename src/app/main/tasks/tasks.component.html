@@ -1,0 +1,7 @@
+<div class="tasks-container">
+
+  <app-calendar [calendartasksList]="toDaysTasks" [currentRoute]="'day'"></app-calendar>
+  <div class="tasks-list-container">
+    <app-task-list [taskList]="toDaysTasks" [type]="'card'"></app-task-list>
+  </div>
+</div>

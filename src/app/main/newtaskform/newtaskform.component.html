@@ -1,0 +1,72 @@
+<div class="header-container">
+  <mat-icon class="icon" (click)="ReturnToMainPage()">keyboard_arrow_left</mat-icon>
+  <h3 class="title"> New Event </h3>
+</div>
+
+<form class="task-form-container" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm)">
+
+  <mat-form-field
+  appearance="outline">
+    <mat-label>Date</mat-label>
+    <input
+    class="input"
+    matInput
+    type="text"
+    formControlName="date"
+    >
+  </mat-form-field>
+
+  <ng-container  *ngIf="(!taskForm.get('date').untouched)">
+    <div class="input-calendar-container">
+      <app-calendar [calendartasksList]="list"></app-calendar>
+    </div>
+  </ng-container>
+
+  <mat-form-field
+  appearance="outline">
+    <mat-label> Task Title</mat-label>
+    <input
+    class="input"
+    matInput
+    type="text"
+    placeholder="Title"
+    formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field
+  appearance="outline">
+    <mat-label>Task Content</mat-label>
+    <textarea
+    class="input"
+    matInput
+    type="text"
+    placeholder="Task"
+    formControlName="desc"></textarea>
+  </mat-form-field>
+
+
+
+  <!-- <div class="radio-group-container">
+    <mat-form-field
+    appearance="outline">
+      <mat-label>Red</mat-label>
+      <input
+      type="radio"
+      formControlName="color">
+    </mat-form-field>
+  </div> -->
+
+
+    <mat-radio-group class="radio-buttons-container" formControlName="color">
+      <mat-radio-button class="input"  value="red">red</mat-radio-button>
+      <mat-radio-button class="input" value="yellow">yellow</mat-radio-button>
+      <mat-radio-button class="input" value="green">green</mat-radio-button>
+      <mat-radio-button class="input" value="none" checked>none</mat-radio-button>
+    </mat-radio-group>
+
+
+  <button
+    class="btn"
+    type="submit"
+    mat-raised-button> Create</button>
+</form>
