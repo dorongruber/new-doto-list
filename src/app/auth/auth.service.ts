@@ -13,7 +13,8 @@ export interface AuthResponseData {
   expiresIn: number;
 }
 
-const URI = 'http://localhost:8080/api/user/';
+// const URI = 'http://localhost:8080/api/user/';
+const URI = 'https://guarded-sea-67886.herokuapp.com/api/user/';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {

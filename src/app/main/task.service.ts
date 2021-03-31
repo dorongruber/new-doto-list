@@ -7,7 +7,8 @@ import { map, tap } from 'rxjs/operators';
 import { Day } from './day.model';
 import { CalendarService } from './calendar.service';
 
-const URI = 'http://localhost:8080/api/task/';
+// const URI = 'http://localhost:8080/api/task/';
+const URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
 
 @Injectable({providedIn: 'root'})
 export class TaskService {

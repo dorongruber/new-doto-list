@@ -10,7 +10,7 @@ const taskRouter = require('./back/routers/tasks');
 
 const app = express();
 
-// app.use(express.static(path.join(__dirname, 'dist/css1')));
+app.use(express.static(path.join(__dirname, 'dist/todolistCalendar')));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -39,9 +39,9 @@ app.use((req,res,next) => {
     next();
   });
 
-// app.get('*', (req,res) => {
-//   res.sendFile(path.join(__dirname, 'dist/css1/index.html'))
-// })
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, 'dist/todolistCalendar/index.html'))
+})
 
 
 
