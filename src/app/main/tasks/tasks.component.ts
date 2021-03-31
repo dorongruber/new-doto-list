@@ -45,6 +45,16 @@ export class TasksComponent implements OnInit, OnDestroy {
     // this.router.navigate(['./task-list'], {relativeTo: this.route});
   }
 
+  RotateRight() {
+    const last = this.toDaysTasks.pop();
+    this.toDaysTasks.unshift(last);
+  }
+
+  RotateLeft() {
+    const first = this.toDaysTasks.shift();
+    this.toDaysTasks.push(first);
+  }
+
   // Perv() {
   //   let newday = (this.cd.d - 1) % this.monthsList[this.cd.m].nd;
   //   if (newday !== -1) {

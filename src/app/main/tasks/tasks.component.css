@@ -40,3 +40,38 @@ ul {
 .tasks-list-container {
   display: flex;
 }
+
+
+.icon  {
+  position: relative;
+  font-size: 24px;
+}
+
+.left, .right {
+  top: 5.5em;
+  color: white;
+}
+
+.right {
+  right: 0;
+}
+
+.tasks-container {
+  height: 84vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+h3 {
+  font-weight: 200;
+  margin-bottom: 0em;
+  padding-left: 2em;
+  box-sizing: border-box;
+  color: white;
+  opacity: .6;
+}
+
+img {
+  width: 90vw;
+  margin: 1em;
+}

@@ -35,7 +35,7 @@ export class DaycalendarComponent implements OnInit, OnDestroy {
 
   Perv() {
     let newday = (this.cd.d - 1) % this.monthsList[this.cd.m].nd;
-    if (newday !== -1) {
+    if (newday > 0) {
       // this.m = newmount;
       this.calendarService.setCurrentDate(newday, this.cd.m, this.cd.y);
     } else {
@@ -46,7 +46,10 @@ export class DaycalendarComponent implements OnInit, OnDestroy {
   }
 
   Next() {
-    const newday = (this.cd.d + 1) % this.monthsList[this.cd.m].nd;
+    let newday = (this.cd.d + 1) % this.monthsList[this.cd.m].nd;
+    if (newday === 0) {
+      newday = 1;
+    }
     this.calendarService.setCurrentDate(newday, this.cd.m, this.cd.y);
   }
 

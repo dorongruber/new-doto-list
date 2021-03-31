@@ -1,8 +1,8 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  height: 45vh;
-  width: 80vw;
+  height: 40vh;
+  width: 70vw;
   margin: 1em;
   background: rgb(52,58,80);
   border-radius: 15px;
@@ -10,7 +10,7 @@
 }
 
 .image-container {
-  height: 50%;
+  height: 40%;
 }
 
 .image {
