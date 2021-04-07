@@ -28,7 +28,7 @@ export class AuthService {
   ) {}
 
   Register(name: string, phone: string, email: string, password: string) {
-    console.log('authservice register -> ', name, phone, email, password);
+    // console.log('authservice register -> ', name, phone, email, password);
     this.loadingObs.next(true);
     return this.http.post<{message: boolean}>(
       `${URI}register`,

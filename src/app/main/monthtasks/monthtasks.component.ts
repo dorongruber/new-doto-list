@@ -28,7 +28,7 @@ export class MonthtasksComponent implements OnInit, OnDestroy {
         this.monthTasksList.push(...tasks);
         this.isLoading = false;
     });
-    this.monthTasksList = this.taskService.GetTasks();
+    this.monthTasksList = this.taskService.getMonthTasks();
     if ( this.monthTasksList.length > 0 ) {
       this.isLoading = false;
     }

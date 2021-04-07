@@ -22,7 +22,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.toDaysTasks = this.taskService.GetToDaysTasks();
+    this.toDaysTasks = this.taskService.getToDaysTasks();
     this.setLists();
     this.listSubscription = this.taskService.dayTAsksChanged.subscribe(tasks => {
       this.toDaysTasks = [];
@@ -30,9 +30,6 @@ export class TasksComponent implements OnInit, OnDestroy {
       this.setLists();
     });
     console.log('this.toDaysTasks -> ', this.toDaysTasks);
-    // this.router.navigate(['./task-list'], {relativeTo: this.route});
-
-
   }
 
   RotateRight(list: Task[]) {

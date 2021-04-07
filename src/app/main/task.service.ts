@@ -69,11 +69,8 @@ export class TaskService {
             this.dayTAsksChanged.next(this.dayTasksList.slice());
           });
         }
-
-
          console.log('dayTasksList -> ', this.dayTasksList);
       });
-
     }
 
   GetSelectedDate() {
@@ -158,12 +155,12 @@ export class TaskService {
     }));
   }
 
-  GetTasks() {
+  getMonthTasks() {
     console.log('get task function => ', this.mounthTasksList);
     return this.mounthTasksList.slice();
   }
 
-  GetToDaysTasks() {
+  getToDaysTasks() {
     return this.dayTasksList.slice();
   }
 

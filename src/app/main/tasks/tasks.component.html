@@ -1,7 +1,7 @@
 <div class="tasks-container">
 
   <app-calendar [calendartasksList]="toDaysTasks" [currentRoute]="'day'"></app-calendar>
-  <h3>Unmarked Events:</h3>
+  <h3>General Events:</h3>
   <ng-container *ngIf="NTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
@@ -12,7 +12,7 @@
     <mat-icon (click)="RotateRight(NTasks)" class="icon right">keyboard_arrow_right</mat-icon>
   </div>
   </ng-container>
-  <h3> Red Marked Events:</h3>
+  <h3> Work Marked Events:</h3>
   <ng-container *ngIf="RTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
@@ -23,7 +23,7 @@
     <mat-icon (click)="RotateRight(RTasks)" class="icon right">keyboard_arrow_right</mat-icon>
   </div>
   </ng-container>
-  <h3> Green Marked Events:</h3>
+  <h3> Vacation Marked Events:</h3>
   <ng-container *ngIf="GTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
@@ -34,7 +34,7 @@
     <mat-icon (click)="RotateRight(GTasks)" class="icon right">keyboard_arrow_right</mat-icon>
   </div>
   </ng-container>
-  <h3> Yellow Marked Events:</h3>
+  <h3> Family Marked Events:</h3>
   <ng-container *ngIf="YTasks.length === 0">
     <img src="../../../assets/images/empty.png">
   </ng-container>
