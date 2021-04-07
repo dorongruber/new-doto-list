@@ -54,14 +54,21 @@ export class LoginComponent implements OnInit {
 
       this.error = null;
       this.router.navigate(['../../main'], { relativeTo: this.route});
-      this.isLoading = false;
+
       this.authService.loadingObs.next(this.isLoading);
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     }, errorMessage => {
       console.log(errorMessage);
-      this.isLoading = false;
+
       // console.log('error -> ', this.error);
       this.authService.loadingObs.next(this.isLoading);
       this.error = errorMessage;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     });
     form.reset();
   }

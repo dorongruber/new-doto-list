@@ -28,7 +28,7 @@ const upload = multer({storage: storage, limits: {
 router.post('/newtask', upload.single('img') , (req,res) => {
   // console.log('new task!!!!! -> ', __dirname + '/uploads/' + req.file.filename);
   try {
-    let file;
+    let imageFile;
     const { title, content, taskDate,color,id,userid,img} = req.body;
     console.log('new task -> ', req.file);
     const dt = new Date(taskDate);
@@ -42,12 +42,12 @@ router.post('/newtask', upload.single('img') , (req,res) => {
       }
       if (req.file !== undefined) {
         console.log('!undefined => ', req.file.filename);
-        file = fs.readFileSync(path.join('./public/uploads/' + req.file.filename));
+        imageFile = fs.readFileSync(path.join('./public/uploads/' + req.file.filename));
       } else {
         console.log('undefined');
-        file = fs.readFileSync(path.join('./public/uploads/default.jpg'));
+        imageFile = fs.readFileSync(path.join('./public/uploads/default.jpg'));
       }
-      console.log('file => ', file);
+      console.log('file => ', imageFile);
       const newTask = new Task({
         id,
         userRef: checkIdRef,
@@ -56,7 +56,7 @@ router.post('/newtask', upload.single('img') , (req,res) => {
         date: dt,
         color,
         img: {
-          data: file,
+          data: imageFile,
           contentType: 'image/*',
         }
       });
@@ -72,7 +72,7 @@ router.post('/newtask', upload.single('img') , (req,res) => {
           id,
           userid,
           img: {
-          file: imageFile
+          file: imageFile.toString('base64')
         }});
       }).catch(err => {
         res.status(401).json(err);
