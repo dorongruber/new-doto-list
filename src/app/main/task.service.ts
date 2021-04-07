@@ -6,6 +6,7 @@ import { Subject, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Day } from './day.model';
 import { CalendarService } from './calendar.service';
+import { ImageSnippet } from './imagesnippet.model';
 
 // const URI = 'http://localhost:8080/api/task/';
 const URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
@@ -19,6 +20,7 @@ export class TaskService {
   dayTAsksChanged = new Subject<Task[]>();
   mounthTasksList: Task[] = [];
   mounthTAsksChanged = new Subject<Task[]>();
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -31,39 +33,48 @@ export class TaskService {
         }
       });
 
-
-
        this.calendarService.changedDate
-       .subscribe(async (date) => {
-        this.date = date;
-        // this.InitTaskList(this.date).subscribe(tasks => {
-        //   console.log('InitTaskList subscribe tasks -> ', tasks);
-        //   // this.dayTasksList.push(...tasks);
-        //   this.dayTAsksChanged.next(this.dayTasksList.slice());
-        // });
-        const monthlist = await this.InitMonthTaskList(this.date).toPromise();
-        monthlist.forEach(task => {
-          console.log('InitMonthTaskList => task ->  ', task);
-          this.mounthTasksList.push(task);
-          this.mounthTAsksChanged.next(this.mounthTasksList.slice());
-        });
-        const templist = await this.InitDayTaskList(this.date).toPromise();
-        this.dayTasksList = [];
-        this.dayTasksList.push(...templist);
-        this.dayTAsksChanged.next(this.dayTasksList.slice());
-        templist.forEach(task => {
-          const checkTask = this.mounthTasksList.filter(Ltask => Ltask.id === task.id);
-          console.log('check test -> ', checkTask);
-          if (task.color !== '' && checkTask.length === 0) {
-            this.mounthTasksList.push(task);
-            this.mounthTAsksChanged.next(this.mounthTasksList.slice());
+       .subscribe((date) => {
+         let mf = false;
+         let df = false;
+         if (!this.date) {
+            this.date = date;
+            df = true;
+            mf = true;
+        } else {
+          const lastday = this.date;
+          this.date = date;
+          if (lastday.m !== this.date.m) {
+            mf = true;
           }
-        });
-        console.log('dayTasksList -> ', this.dayTasksList);
+          if (lastday.d !== this.date.d) {
+            df = true;
+          }
+        }
+
+         if (mf) {
+          this.InitMonthTaskList(this.date).toPromise()
+          .then(tasks => {
+            this.mounthTasksList = [];
+            this.mounthTasksList.push(...tasks);
+            this.mounthTAsksChanged.next(this.mounthTasksList.slice());
+          });
+        }
+
+         if (df) {
+          this.InitDayTaskList(this.date).toPromise()
+          .then(tasks => {
+            this.dayTasksList = [];
+            this.dayTasksList.push(...tasks);
+            this.dayTAsksChanged.next(this.dayTasksList.slice());
+          });
+        }
+
+
+         console.log('dayTasksList -> ', this.dayTasksList);
       });
 
     }
-
 
   GetSelectedDate() {
     return this.date;
@@ -76,27 +87,28 @@ export class TaskService {
   }
 
   NewTask(nt: Task) {
-    const dbtaskformat = {
-      title: nt.title,
-      content: nt.content,
-      taskDate: nt.date,
-      color: nt.color,
-      id: nt.id,
-      userid: this.currentuser.userid
-    };
-    console.log('new task -> ', dbtaskformat);
-    console.log('new task -> ', nt.date);
-    // return this.http.post(`${URI}newtask`, dbtaskformat);
-    this.http.post<Task>(`${URI}newtask`, dbtaskformat)
+    console.log('new task -> ', nt);
+
+    let formData = new FormData();
+    formData.append('title', nt.title);
+    formData.append('content', nt.content);
+    formData.append('taskDate',  nt.date.toDateString());
+    formData.append('color', nt.color);
+    formData.append('id', JSON.stringify(nt.id));
+    formData.append('userid', this.currentuser.userid);
+    formData.append('img', nt.img.file);
+
+    this.http.post<Task>(`${URI}newtask`, formData)
     .pipe(tap(resData => {
       const newTask = new Task(
         resData.title,
         resData.content,
         resData.date,
         resData.color,
-        resData.id
+        resData.id,
+        resData.img
       );
-      if (resData.color !== 'none') {
+      if (resData.color !== '') {
         this.mounthTasksList.push(newTask);
         this.mounthTAsksChanged.next(this.mounthTasksList.slice());
       }
@@ -104,13 +116,6 @@ export class TaskService {
       this.dayTAsksChanged.next(this.dayTasksList.slice());
     })).subscribe();
     // look how to se response state
-  }
-
-  GetCurrentDayTasks(date: string) {
-    // console.log('GetCurrentDayTasks : ', date);
-
-    const uid = this.currentuser.userid;
-    return this.http.get(`${URI}todaystasks/${date}/${uid}`);
   }
 
   // TODO change how i resevie data from http.get
@@ -126,7 +131,8 @@ export class TaskService {
           content: task.content,
           date: task.date,
           color: task.color,
-          id: task.id
+          id: task.id,
+          img: task.img
         };
       });
     }));
@@ -145,13 +151,15 @@ export class TaskService {
           content: task.content,
           date: task.date,
           color: task.color,
-          id: task.id
+          id: task.id,
+          img: task.img
         };
       });
     }));
   }
 
   GetTasks() {
+    console.log('get task function => ', this.mounthTasksList);
     return this.mounthTasksList.slice();
   }
 

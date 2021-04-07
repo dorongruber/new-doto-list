@@ -20,18 +20,19 @@ export class MonthtasksComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
 
-    this.monthTasksList = this.taskService.GetTasks();
     this.montSubscription = this.taskService.mounthTAsksChanged
       .subscribe(tasks => {
-        this.isLoading = true;
-        // console.log('new color task -> ', tasks);
         this.monthTasksList = [];
         this.monthTasksList.push(...tasks);
-        // console.log('this.monthTasksList subscribe -> ', this.monthTasksList);
         this.isLoading = false;
     });
-
+    this.monthTasksList = this.taskService.GetTasks();
+    if ( this.monthTasksList.length > 0 ) {
+      this.isLoading = false;
+    }
+    // console.log('this.monthTasksList subscribe -> ', this.monthTasksList);
   }
 
   onLogout() {

@@ -14,11 +14,10 @@ const routes: Routes = [
   canActivate: [AuthGurd],
   children: [
     {path: 'newtask', component: NewtaskformComponent},
-    {path: 'toDayTasks', component: TasksComponent, children: [
-      {path: 'task-list', component: TaskListComponent}
-    ]},
+    {path: 'toDayTasks', component: TasksComponent},
     {path: 'monthtasks', component: MonthtasksComponent}
-  ]}
+  ]},
+  {path: 'main', redirectTo: ''}
 ];
 
 @NgModule({

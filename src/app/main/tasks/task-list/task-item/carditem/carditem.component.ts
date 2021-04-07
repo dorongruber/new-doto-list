@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Task } from 'src/app/main/task.model';
 
 @Component({
@@ -6,13 +7,20 @@ import { Task } from 'src/app/main/task.model';
   templateUrl: './carditem.component.html',
   styleUrls: ['./carditem.component.css']
 })
-export class CarditemComponent implements OnInit {
+export class CarditemComponent implements OnChanges {
 
   @Input()task: Task;
   @Input()index: number;
-  constructor() { }
+  constructor(
+    private sanitizer: DomSanitizer
+  ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    console.log('task => ', this.task);
+  }
+
+  Transform() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/*;base64,' + this.task.img.file);
   }
 
   DeleteTask() {

@@ -24,6 +24,10 @@ const TaskSchema = mongoose.Schema({
   color: {
     type: String,
     require: true
+  },
+  img: {
+    data: Buffer,
+    contentType: String
   }
 })
 

@@ -1,16 +1,18 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 import { Subscription } from 'rxjs';
 import { CalendarService } from '../calendar.service';
 import { ControlsService } from '../controls.service';
 import { Day } from '../day.model';
+import { ImageSnippet } from '../imagesnippet.model';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 
-class ImageSnippet {
-  constructor(public src: string, public file: File) {}
-}
+
+
 
 @Component({
   selector: 'app-newtaskform',
@@ -25,12 +27,15 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
   taskForm: FormGroup;
   dateStr: string;
   selectedFile: ImageSnippet;
+  sf = false;
+  temp: any;
   constructor(
     private calendarService: CalendarService,
-    private controlsService: ControlsService,
+    private ng2ImgMax: Ng2ImgMaxService,
     private taskService: TaskService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -48,6 +53,7 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
 
   InitForm() {
     console.log('datestr -> ', this.dateStr);
+
     this.taskForm = new FormGroup({
       title: new FormControl('', [
         Validators.required,
@@ -70,24 +76,51 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
     console.log('new event -> ', form.value, this.currentDate);
     const date = new Date(this.currentDate.y, this.currentDate.m, this.currentDate.d);
     console.log('date element -> ', this.currentDate.y, this.currentDate.m, this.currentDate.d);
+
+    if (!this.sf ) {
+      const emptyFile = new File([], 'emptyfile');
+      this.selectedFile = new ImageSnippet(emptyFile);
+    }
+
     const newtask = new Task(form.value.title,
       form.value.desc,
       date,
       form.value.color,
-      date.getTime());
+      date.getTime(),
+      this.selectedFile);
     this.taskService.NewTask(newtask);
 
   }
 
   ProcessFile(imageInput: any) {
-    console.log('imageInput => ', imageInput.target.files[0]);
+    console.log('imageInput => ', this.form);
     const file: File = imageInput.target.files[0];
     if (file) {
       const reader = new FileReader();
 
       reader.addEventListener('load', (event: any) => {
-        this.selectedFile = new ImageSnippet(event.target.result, file);
+        if (file) {
+          console.log('selected file');
+          this.ng2ImgMax.resizeImage(file, 200, 150)
+          .subscribe(result => {
+            const newfile = new File([result], result.name);
+            this.selectedFile = new ImageSnippet(newfile);
+            this.sf = !this.sf;
+          },
+          error => {
+            console.log('error => ', error);
+          });
+          // this.selectedFile = new ImageSnippet(file);
+
+        } else {
+          console.log('jhasbfabsdofibasdbfasd');
+          const emptyFile = new File([], 'emptyfile');
+          this.selectedFile = new ImageSnippet(emptyFile);
+          this.sf = false;
+        }
+        this.temp = event.target.result;
         console.log('this.selectedFile => ', event.target.result);
+        console.log('this.selectedFile => ', file);
       });
 
       reader.readAsDataURL(file);
@@ -95,9 +128,13 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
 
   }
 
+  Transform() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.temp);
+  }
+
   ReturnToMainPage() {
-    this.controlsService.SetSidenavState(false);
-    this.router.navigate(['../'], {relativeTo: this.route});
+    // this.controlsService.SetSidenavState(false);
+    this.router.navigate(['../../'], {relativeTo: this.route});
   }
 
   ngOnDestroy() {

@@ -3,7 +3,7 @@
   <h3 class="title"> New Event </h3>
 </div>
 
-<form class="task-form-container" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm)">
+<form class="task-form-container" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm)" enctype="multipart/form-data">
 
   <mat-form-field
   appearance="outline">
@@ -18,7 +18,7 @@
 
   <ng-container  *ngIf="(!taskForm.get('date').untouched)">
     <div class="input-calendar-container">
-      <app-calendar [calendartasksList]="list"></app-calendar>
+      <app-calendar [calendartasksList]="list" [currentRoute]="'month'"></app-calendar>
     </div>
   </ng-container>
 
@@ -53,13 +53,17 @@
     placeholder="image"
     formControlName="image"
     (change)="ProcessFile($event)"
+    accept="image/*"
     #fileInput>
-    <button type="button" (click)="fileInput.click()"> Select File</button>
+    <button
+    mat-raised-button
+    type="button"
+    (click)="fileInput.click()"> Select File</button>
 
     <div class="image-preview-container">
-      <ng-container *ngIf="selectedFile">
+      <ng-container *ngIf="selectedFile && selectedFile.file.name !== 'emptyfile'">
         <img
-        [src]="selectedFile.src"
+        [src]="Transform()"
         alt="Image Preview"
         class="image-preview">
       </ng-container>

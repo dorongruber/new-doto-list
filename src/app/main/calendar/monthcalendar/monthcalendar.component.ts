@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CalendarService } from '../../calendar.service';
 import { Day } from '../../day.model';
 import { Task } from '../../task.model';
@@ -9,7 +9,7 @@ import { TaskService } from '../../task.service';
   templateUrl: './monthcalendar.component.html',
   styleUrls: ['./monthcalendar.component.css']
 })
-export class MonthcalendarComponent implements OnInit, OnChanges {
+export class MonthcalendarComponent implements OnInit, OnChanges, AfterViewInit {
   monthsList: {m: string, nd: number}[] = [];
   daysList: {n: string}[] = [];
   days: number[] = [];
@@ -27,11 +27,19 @@ export class MonthcalendarComponent implements OnInit, OnChanges {
     this.calendarService.changedDate
     .subscribe(date => {
       console.log('calendar date -> ', date);
+      console.log('calendar cd -> ', this.cd);
+      if (this.cd !== undefined && date !== undefined) {
+        if (this.cd.m !== date.m) {
+          console.log('?????????');
+          this.RemoveMarks();
+        }
+      }
       this.cd = {
         d: date.d,
         m: date.m,
         y: date.y
       };
+
     });
 
 
@@ -56,11 +64,26 @@ export class MonthcalendarComponent implements OnInit, OnChanges {
     }
   }
 
+  ngAfterViewInit() {
+    this.MarkDayOnCalendar(this.cd.d);
+  }
+
   MarkDays() {
     this.monthTasksList.forEach(task => {
       console.log('for each task -> ', task);
+      const index = this.days.indexOf(new Date(task.date).getDate());
       const i = new Date(task.date).getDate();
-      (document.querySelectorAll('.test')[i]).classList.add(`background-${task.color}`);
+      (document.querySelectorAll('.test')[index]).classList.add(`background-${task.color}`);
+    });
+    this.MarkDayOnCalendar(this.cd.d);
+  }
+
+  RemoveMarks() {
+    console.log('RemoveMarks -> ', this.cd);
+    this.monthTasksList.forEach(task => {
+      const index = this.days.indexOf(new Date(task.date).getDate());
+      const i = new Date(task.date).getDate();
+      (document.querySelectorAll('.test')[index]).classList.remove(`background-${task.color}`);
     });
     this.MarkDayOnCalendar(this.cd.d);
   }
@@ -140,6 +163,7 @@ export class MonthcalendarComponent implements OnInit, OnChanges {
   }
 
   MarkDayOnCalendar(day: number) {
+    console.log('dat => ', day);
     document.getElementById(day.toString()).style.fontSize = '20px';
     document.getElementById(day.toString()).style.color = 'black';
   }

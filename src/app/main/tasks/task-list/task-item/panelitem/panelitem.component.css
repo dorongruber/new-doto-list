@@ -41,6 +41,16 @@
   color: white;
 }
 
+.title-container {
+  opacity: .8;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.description-container {
+  opacity: .6;
+}
+
 .background-yellow {
   background: orange;
   border-radius: 5px;

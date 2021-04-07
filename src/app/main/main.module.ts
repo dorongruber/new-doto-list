@@ -26,6 +26,7 @@ import { CarditemComponent } from './tasks/task-list/task-item/carditem/carditem
 import { PanelitemComponent } from './tasks/task-list/task-item/panelitem/panelitem.component';
 import { PositionDirective } from './tasks/task-list/task-item/position.directive';
 
+import { ImgExifService, ImgMaxPXSizeService, ImgMaxSizeService, Ng2ImgMaxService, Ng2ImgMaxModule } from 'ng2-img-max';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,14 @@ import { PositionDirective } from './tasks/task-list/task-item/position.directiv
     MatIconModule,
     MatRadioModule,
     MainRoutingModule,
+    Ng2ImgMaxModule,
     SharedModule
+  ],
+  providers: [
+    ImgMaxPXSizeService,
+    ImgExifService,
+    ImgMaxSizeService,
+    Ng2ImgMaxService,
   ],
   exports: []
 })

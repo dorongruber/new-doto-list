@@ -1,6 +1,6 @@
 <div class="card-container">
   <div class="image-container">
-    <img class="image" src="../../../../../../assets/images/1536016414.png">
+    <img class="image" [src]="Transform()">
   </div>
 
   <div class="content-container">
@@ -19,9 +19,16 @@
       </div>
     </div>
 
-    <div class="footer-container">
-      <button (click)="DeleteTask()">Delete</button>
-    </div>
+
+  </div>
+
+  <div class="footer-container">
+    <button mat-raised-button (click)="DeleteTask()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-raised-button (click)="DeleteTask()">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
   </div>
 
 </div>
