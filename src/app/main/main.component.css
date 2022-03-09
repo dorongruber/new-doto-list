@@ -1,26 +1,48 @@
 .active {
- box-shadow: 0px 0px 15px 10px rgb(255, 255, 255);
+ box-shadow: 0px 0px 15px 2px rgb(255, 255, 255);
 }
 
-.footer-container {
+.footer-container , .icon-position {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icons-container {
   display: flex;
   justify-content: space-evenly;
-  padding: 1em;
+  padding: .5em 1em;
   box-sizing: border-box;
 }
 
+.icon-position {
+  align-items: center;
+}
+
 .footer-icon {
+  cursor: pointer;
   color: darkgray;
-  font-size: 1.6em;
+  font-size: 1em;
   width: 1em;
   height: 1em;
 }
 
 .main-page-container {
   background: rgb(42,45,67);
-  height: 84vh;
+  height: 95vh;
 }
 
 ::ng-deep .mat-drawer {
   background: rgb(55, 58, 80);
+}
+
+@media only screen and (max-width: 550px) {
+
+  .icons-container {
+    padding: 1em;
+  }
+
+  .footer-icon {
+    font-size: 1.2em;
+  }
 }

@@ -53,27 +53,29 @@
 </div>
 
 <div class="footer-container">
-  <mat-icon class="footer-icon"
-  (click)="onRouteSelect('./newtask',add)"
-  [ngClass]="{active: routesList[0] === true}"
-  id="new-event"
-  #add>
-    add
-  </mat-icon>
-  <mat-icon
-  class="footer-icon"
-  [ngClass]="{active: routesList[1] === true}"
-  id="events-list"
-  (click)="onRouteSelect('./toDayTasks',newevent)"
-  #newevent>
-    event
-  </mat-icon>
-  <mat-icon
-  class="footer-icon"
-  [ngClass]="{active: routesList[2] === true}"
-  id="month-tasks"
-  (click)="onRouteSelect('./monthtasks',monthtasks)"
-  #monthtasks>calendar_today</mat-icon>
+  <div class="icons-container">
+    <mat-icon class="footer-icon icon-position"
+    (click)="onRouteSelect('./newtask',add)"
+    [ngClass]="{active: routesList[0] === true}"
+    id="new-event"
+    #add>
+      add
+    </mat-icon>
+    <mat-icon
+    class="footer-icon icon-position"
+    [ngClass]="{active: routesList[1] === true}"
+    id="events-list"
+    (click)="onRouteSelect('./toDayTasks',newevent)"
+    #newevent>
+      event
+    </mat-icon>
+    <mat-icon
+    class="footer-icon icon-position"
+    [ngClass]="{active: routesList[2] === true}"
+    id="month-tasks"
+    (click)="onRouteSelect('./monthtasks',monthtasks)"
+    #monthtasks>calendar_today</mat-icon>
+  </div>
   <!-- <mat-icon class="footer-icon">settings</mat-icon> -->
 
 </div>

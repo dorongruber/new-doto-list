@@ -8,9 +8,9 @@ import { Day } from './day.model';
 import { CalendarService } from './calendar.service';
 import { ImageSnippet } from './imagesnippet.model';
 
-// const URI = 'http://localhost:8080/api/task/';
-const URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
-
+const DEV_URI = 'http://localhost:8080/api/task/';
+const PROD_URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
+const URI = window.location.hostname === 'localhost' ? DEV_URI : PROD_URI;
 @Injectable({providedIn: 'root'})
 export class TaskService {
   currentuser: {userid: string};
@@ -86,7 +86,7 @@ export class TaskService {
   NewTask(nt: Task) {
     console.log('new task -> ', nt);
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('title', nt.title);
     formData.append('content', nt.content);
     formData.append('taskDate',  nt.date.toDateString());

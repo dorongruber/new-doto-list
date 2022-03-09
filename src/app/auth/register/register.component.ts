@@ -32,11 +32,11 @@ export class RegisterComponent implements OnInit {
 
   InitForm() {
 
-    let userName = '';
-    let userEmail = '';
-    let userPhone = '';
-    let userPassword = '';
-    let userConfiremPassword = '';
+    const userName = '';
+    const userEmail = '';
+    const userPhone = '';
+    const userPassword = '';
+    const userConfiremPassword = '';
 
     this.authForm = new FormGroup({
       name: new FormControl(userName, [Validators.required]),
@@ -63,10 +63,10 @@ export class RegisterComponent implements OnInit {
     }
     this.isLoading = true;
     console.log('register form -> ', form);
-    let name = form.value.name;
-    let email = form.value.email;
-    let phone = form.value.phone;
-    let password = form.value.passform.password;
+    const name = form.value.name;
+    const email = form.value.email;
+    const phone = form.value.phone;
+    const password = form.value.passform.password;
 
     let authObs: Observable<{message: boolean}>;
 

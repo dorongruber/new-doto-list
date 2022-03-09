@@ -1,0 +1,46 @@
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 30vh;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.date {
+  display: flex;
+}
+
+.date-content {
+  margin-left: 3em;
+}
+
+.dialog-content {
+  height: 100%;
+}
+
+
+::ng-deep .mat-dialog-container {
+  background: rgb(42,45,67) !important;
+}
+
+
+@media only screen and (min-width: 850px) {
+  .image {
+    width: 200px;
+    height: 170px;
+  }
+
+  ::ng-deep .mat-dialog-container {
+    width: 80% !important;
+    margin: auto !important;
+  }
+
+}

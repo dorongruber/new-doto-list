@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 44vh;
   width: 70vw;
-  margin: 1em;
+  /* margin: 1em; */
   background: rgb(52,58,80);
   border-radius: 15px;
   border: 1px solid black;
@@ -57,4 +57,26 @@
   color: white;
   opacity: .8;
   font-weight: 500;
+}
+
+.date-content {
+  margin-left: 2em;
+}
+
+@media only screen and (min-width: 850px) {
+
+  .card-container {
+    height: 45vh;
+    width: 15vw;
+  }
+
+  .content {
+    max-height: 2ch;
+    max-width: 18ch;
+  }
+
+  img {
+    height: 60vh;
+  }
+
 }

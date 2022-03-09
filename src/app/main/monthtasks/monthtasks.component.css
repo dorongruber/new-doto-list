@@ -12,8 +12,8 @@
 .task-list-container {
   background: rgb(42, 45, 67);
   margin: 0em;
-  height: 27vh;
-  overflow: scroll;
+  height: 34vh;
+  overflow-y: scroll;
 }
 
 .events-list-header {
@@ -78,4 +78,8 @@
   justify-content: center;
   padding-top: 2em;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
