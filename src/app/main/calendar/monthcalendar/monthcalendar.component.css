@@ -110,3 +110,7 @@ a[target="RED"] {
 .background-red {
   background: rgb(196, 24, 24);
 }
+
+.background-Chocolate {
+  background-color: rgb(210, 105, 30);
+}

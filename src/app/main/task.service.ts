@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from './task.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
-import { Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Day } from './day.model';
 import { CalendarService } from './calendar.service';
@@ -17,9 +17,9 @@ export class TaskService {
   date: Day;
   userChanged: Subscription;
   dayTasksList: Task[] = [];
-  dayTAsksChanged = new Subject<Task[]>();
+  dayTAsksChanged = new BehaviorSubject<Task[]>([]);
   mounthTasksList: Task[] = [];
-  mounthTAsksChanged = new Subject<Task[]>();
+  mounthTAsksChanged = new BehaviorSubject<Task[]>([]);
 
   constructor(
     private http: HttpClient,
@@ -62,8 +62,11 @@ export class TaskService {
         }
 
          if (df) {
+          console.log('df');
           this.InitDayTaskList(this.date).toPromise()
           .then(tasks => {
+            console.log('InitDayTaskList => ', tasks);
+
             this.dayTasksList = [];
             this.dayTasksList.push(...tasks);
             this.dayTAsksChanged.next(this.dayTasksList.slice());
@@ -122,6 +125,7 @@ export class TaskService {
     const uid = this.currentuser.userid;
     return this.http.get<{tasksList: Task[]}>(`${URI}todaystasks/${dayId}/${uid}`)
     .pipe(map(resData => {
+      if (resData && !resData.tasksList) { return []; }
       return resData.tasksList.map(task => {
         return {
           title: task.title,
@@ -141,8 +145,13 @@ export class TaskService {
     // console.log('InitMonthTaskList -> ', month, uid);
     return this.http.get<{monthTaskList: Task[]}>(`${URI}monthtasks/${month}/${uid}`)
     .pipe(map(resData => {
-      // console.log('InitMonthTaskList resData -> ', resData);
+      console.log('InitMonthTaskList resData => ', resData);
+
+      if (resData && !resData.monthTaskList) {return []; }
       return resData.monthTaskList.map(task => {
+        if (new Date(task.date).getDate() === this.date.d) {
+          this.dayTasksList.push(task);
+        }
         return {
           title: task.title,
           content: task.content,

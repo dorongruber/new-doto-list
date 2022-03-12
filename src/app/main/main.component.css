@@ -38,9 +38,9 @@
 
 @media only screen and (max-width: 550px) {
 
-  .icons-container {
+  /* .icons-container {
     padding: 1em;
-  }
+  } */
 
   .footer-icon {
     font-size: 1.2em;

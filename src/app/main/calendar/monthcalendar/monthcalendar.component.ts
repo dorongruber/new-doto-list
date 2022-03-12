@@ -70,16 +70,15 @@ export class MonthcalendarComponent implements OnInit, OnChanges, AfterViewInit 
 
   MarkDays() {
     this.monthTasksList.forEach(task => {
-      console.log('for each task -> ', task);
       const index = this.days.indexOf(new Date(task.date).getDate());
       const i = new Date(task.date).getDate();
+      task.color = task.color ? task.color : 'Chocolate';
       (document.querySelectorAll('.test')[index]).classList.add(`background-${task.color}`);
     });
     this.MarkDayOnCalendar(this.cd.d);
   }
 
   RemoveMarks() {
-    console.log('RemoveMarks -> ', this.cd);
     this.monthTasksList.forEach(task => {
       const index = this.days.indexOf(new Date(task.date).getDate());
       const i = new Date(task.date).getDate();

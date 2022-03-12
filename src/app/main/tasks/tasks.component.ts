@@ -43,6 +43,8 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   FilterList(filter: string) {
+    console.log('FilterList ', filter, this.toDaysTasks);
+
     return this.toDaysTasks.filter(t => t.color === filter).slice();
   }
 

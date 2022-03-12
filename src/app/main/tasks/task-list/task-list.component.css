@@ -1,5 +1,26 @@
 .cards-list-container {
   display: flex;
+  width: 96vw;
+}
+
+.card {
+  transition: 0.5s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.card:not(:first-child) {
+  margin-left: -8.5em;
+}
+
+.card:hover {
+  transition: 0.5s ease-out;
+}
+
+.card:hover ~ .card {
+  position: relative;
+  left: 8.5em;
+  transition: 0.5s ease-out;
 }
 
 /* .task {

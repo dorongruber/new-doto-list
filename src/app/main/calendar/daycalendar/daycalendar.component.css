@@ -33,13 +33,17 @@ ul {
   opacity: 0.7;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 650px) {
   .container {
     justify-content: space-evenly;
   }
+
+  .change-date-container {
+    display: flex;
+  }
 }
 
-@media only screen and (min-width: 550px) {
+@media only screen and (min-width: 650px) {
 
   .date {
     top: 2vh;

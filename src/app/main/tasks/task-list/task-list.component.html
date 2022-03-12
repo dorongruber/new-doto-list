@@ -12,6 +12,7 @@
 <ng-container *ngIf="type === 'card'">
   <div class="cards-list-container">
     <app-task-item
+    [ngClass]="'card'"
     *ngFor="let task of taskList; index as i;"
     [task]="task"
     [index]="i"

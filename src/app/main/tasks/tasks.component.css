@@ -76,7 +76,13 @@ img {
   margin: 1em;
 }
 
-@media only screen and (min-width: 850px) {
+@media screen and (max-width:650px) {
+  .tasks-container {
+    height: 94vh;
+  }
+}
+
+@media only screen and (min-width: 650px) {
 
   .tasks-container {
     height: -webkit-fill-available;

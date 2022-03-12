@@ -79,4 +79,18 @@
     height: 60vh;
   }
 
+  :host ::ng-deep .mat-raised-button {
+    min-width: 30px !important;
+    line-height: 24px !important;
+  }
+
+  :host ::ng-deep .mat-icon {
+    height: 16px !important;
+    width: 16px !important;
+  }
+
+  :host ::ng-deep .material-icons {
+    font-size: 16px !important;
+  }
+
 }
