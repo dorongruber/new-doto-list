@@ -1,0 +1,15 @@
+<h1 class="title" mat-dialog-title> {{ data.title }} </h1>
+<div class="dialog-content" mat-dialog-content>
+  <img class="image" [src]="Transform()">
+  <p class="content"> {{ data.content }}</p>
+  <div class="date">
+    <mat-icon class="icon" >access_time</mat-icon>
+    <div class="date-content">
+      {{ day }} / {{month}} / {{year}}
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()"> Close </button>
+  </div>
+</div>
+
