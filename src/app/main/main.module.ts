@@ -28,6 +28,7 @@ import { PanelitemComponent } from './tasks/task-list/task-item/panelitem/paneli
 import { PositionDirective } from './tasks/task-list/task-item/position.directive';
 
 import { ImgExifService, ImgMaxPXSizeService, ImgMaxSizeService, Ng2ImgMaxService, Ng2ImgMaxModule } from 'ng2-img-max';
+import { EventfullscreendialogComponent } from './tasks/task-list/task-item/eventfullscreendialog/eventfullscreendialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ImgExifService, ImgMaxPXSizeService, ImgMaxSizeService, Ng2ImgMaxServic
     MonthcalendarComponent,
     CarditemComponent,
     PanelitemComponent,
-    PositionDirective
+    PositionDirective,
+    EventfullscreendialogComponent
   ],
   imports: [
     CommonModule,
@@ -66,6 +68,7 @@ import { ImgExifService, ImgMaxPXSizeService, ImgMaxSizeService, Ng2ImgMaxServic
     ImgMaxSizeService,
     Ng2ImgMaxService,
   ],
-  exports: []
+  exports: [],
+  entryComponents: [EventfullscreendialogComponent]
 })
 export class MainModule {}

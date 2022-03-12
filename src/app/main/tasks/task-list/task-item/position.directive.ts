@@ -35,15 +35,4 @@ export class PositionDirective implements OnChanges {
       // console.log('Directive => ', newMarginTop, newMarginLeft);
     }
   }
-  @HostListener('mouseover', ['$event']) onMouseOver(event: MouseEvent) {
-    // event.stopPropagation();
-    // const part = this.el.nativeElement.querySelector('.card-container');
-    // this.renderer.setStyle(part, 'zIndex', '200');
-  }
-
-  @HostListener('mouseout', ['$event']) onMouseOut(event: MouseEvent) {
-    // event.stopPropagation();
-    // onst part = this.el.nativeElement.querySelector('.card-container');
-    // this.renderer.setStyle(part, 'zIndex', this.zIndex);
-  }
 }
