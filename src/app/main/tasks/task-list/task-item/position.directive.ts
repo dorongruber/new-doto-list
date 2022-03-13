@@ -69,8 +69,6 @@ export class PositionDirective implements OnChanges, AfterViewInit {
 
   setAfterElementStyle(allEls) {
     const afterIndex = (this.index + 1) % allEls.length;
-    console.log('setAfterElementStyle ===> ', afterIndex, allEls.length);
-
     const part = allEls[afterIndex];
     part.style.transform = 'translatex(0.5em) scale(.8)';
     part.style.opacity = '0.4';
