@@ -34,7 +34,7 @@ export class PositionDirective implements OnChanges, AfterViewInit {
   @HostListener('click', ['$event']) onClick(event: MouseEvent) {
     if (window.innerWidth <= 650) {
       event.stopPropagation();
-      const allElements = document.querySelectorAll(`.card-container.${this.elementRow}`);
+      const allElements = (document.querySelectorAll(`.card-container.${this.elementRow}`) as NodeListOf<HTMLElement>);
       this.currentEl = (this.el.nativeElement.querySelector(`.card-container.${this.elementRow}`) as HTMLElement);
       this.currentEl.focus({preventScroll: false});
       this.currentEl.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
@@ -53,26 +53,26 @@ export class PositionDirective implements OnChanges, AfterViewInit {
     }
   }
 
-  setBeforeElementStyle(allEls) {
+  setBeforeElementStyle(allEls: NodeListOf<HTMLElement>) {
     const beforeIndex = (this.index - 1 + allEls.length) % allEls.length;
     const part = allEls[beforeIndex];
     part.style.transform = 'translatex(-0.5em) scale(.8)';
     part.style.opacity = '0.4';
-    part.style.zIndex = 100;
+    part.style.zIndex = '100';
   }
 
-  setCurrentElementStyle(part, transform, opacity, zindex) {
+  setCurrentElementStyle(part: HTMLElement, transform: string, opacity: string, zindex: number) {
     this.renderer.setStyle(part, 'transform', transform);
     this.renderer.setStyle(part, 'opacity', opacity);
     this.renderer.setStyle(part, 'zIndex', zindex);
   }
 
-  setAfterElementStyle(allEls) {
+  setAfterElementStyle(allEls: NodeListOf<HTMLElement>) {
     const afterIndex = (this.index + 1) % allEls.length;
     const part = allEls[afterIndex];
     part.style.transform = 'translatex(0.5em) scale(.8)';
     part.style.opacity = '0.4';
-    part.style.zIndex = 100;
+    part.style.zIndex = '100';
   }
 
 }
