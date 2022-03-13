@@ -7,6 +7,7 @@
   background: rgb(52,58,80);
   border-radius: 15px;
   border: 1px solid black;
+  position: relative;
 }
 
 .image-container {
@@ -63,7 +64,13 @@
   margin-left: 2em;
 }
 
-@media only screen and (min-width: 850px) {
+@media screen and (max-width: 650px) {
+  .card-container {
+    width: 55vw;
+  }
+}
+
+@media only screen and (min-width: 650px) {
 
   .card-container {
     height: 45vh;

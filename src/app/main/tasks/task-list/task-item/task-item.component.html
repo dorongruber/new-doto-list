@@ -1,24 +1,6 @@
-<!-- <div class="task-container">
-  <div class="date-container">
-    <div class="date">
-      {{day}}
-    </div>
-  </div>
-  <div class="main-info-container">
-    <div class="title-container">
-      {{task.title}}
-    </div>
-    <div class="description-container">
-      {{task.content}}
-    </div>
-  </div>
-  <div class="moreInfo-icon-container">
-    <mat-icon class="icon">keyboard_arrow_right</mat-icon>
-  </div>
-</div> -->
 <ng-container *ngIf="type === 'panel'">
   <app-panelitem [task]="task" [index]="index"></app-panelitem>
 </ng-container>
 <ng-container *ngIf="type === 'card'">
-  <app-carditem [task]="task" [index]="index"></app-carditem>
+  <app-carditem [task]="task" [index]="index" [row]="row"></app-carditem>
 </ng-container>

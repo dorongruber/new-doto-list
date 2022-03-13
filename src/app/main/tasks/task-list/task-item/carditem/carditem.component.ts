@@ -14,6 +14,7 @@ export class CarditemComponent implements OnChanges {
 
   @Input()task: Task;
   @Input()index: number;
+  @Input() row: string;
   constructor(
     private sanitizer: DomSanitizer,
     private taskService: TaskService,

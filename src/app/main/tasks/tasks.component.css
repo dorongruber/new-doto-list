@@ -39,6 +39,7 @@ ul {
 
 .tasks-list-container {
   display: flex;
+  overflow-x: scroll;
 }
 
 
@@ -80,6 +81,16 @@ img {
   .tasks-container {
     height: 94vh;
   }
+
+  .tasks-list-container {
+    margin: 0 4vw;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+  }
+
+  .icon {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 650px) {
@@ -89,7 +100,7 @@ img {
   }
 
   .icon {
-    cursor: pointer;
+    display: none;
   }
 
   img {

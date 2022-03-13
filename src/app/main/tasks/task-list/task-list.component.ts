@@ -9,6 +9,7 @@ import { Task } from '../../task.model';
 export class TaskListComponent implements OnInit, OnChanges {
   @Input() taskList: Task[];
   @Input()type: string;
+  @Input() row: string;
   constructor() { }
 
   ngOnInit() {

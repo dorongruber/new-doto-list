@@ -10,6 +10,7 @@ export class TaskItemComponent implements OnInit {
   @Input()task: Task;
   @Input()index: number;
   @Input()type: string;
+  @Input() row: string;
   color: string;
   day: number;
   constructor() { }
