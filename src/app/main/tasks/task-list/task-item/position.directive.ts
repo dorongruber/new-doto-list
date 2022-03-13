@@ -56,9 +56,7 @@ export class PositionDirective implements OnChanges, AfterViewInit {
   setBeforeElementStyle(allEls: NodeListOf<HTMLElement>) {
     const beforeIndex = (this.index - 1 + allEls.length) % allEls.length;
     const part = allEls[beforeIndex];
-    part.style.transform = 'translatex(-0.5em) scale(.8)';
-    part.style.opacity = '0.4';
-    part.style.zIndex = '100';
+    this.setNeighborElementStyle(part, 'translatex(-0.5em) scale(.8)', '0.4', '100');
   }
 
   setCurrentElementStyle(part: HTMLElement, transform: string, opacity: string, zindex: number) {
@@ -70,9 +68,13 @@ export class PositionDirective implements OnChanges, AfterViewInit {
   setAfterElementStyle(allEls: NodeListOf<HTMLElement>) {
     const afterIndex = (this.index + 1) % allEls.length;
     const part = allEls[afterIndex];
-    part.style.transform = 'translatex(0.5em) scale(.8)';
-    part.style.opacity = '0.4';
-    part.style.zIndex = '100';
+    this.setNeighborElementStyle(part, 'translatex(0.5em) scale(.8)', '0.4', '100');
+  }
+
+  setNeighborElementStyle(part: HTMLElement, transform: string, opacity: string, zindex: string) {
+    part.style.transform = transform;
+    part.style.opacity = opacity;
+    part.style.zIndex = zindex;
   }
 
 }
