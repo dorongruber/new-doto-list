@@ -21,7 +21,7 @@ export class PositionDirective implements OnChanges, AfterViewInit {
     private renderer: Renderer2) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-      if (changes.index !== undefined) {
+      if (changes.index !== undefined && window.innerWidth <= 650) {
         this.zIndex = `${100 + this.index}`;
       }
   }
