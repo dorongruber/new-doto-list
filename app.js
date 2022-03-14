@@ -8,7 +8,7 @@ const taskRouter = require('./back/routers/tasks');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'dist/todolistCalendar')));
+app.use(express.static(path.join(__dirname, 'dist','todolistCalendar')));
 
 app.use(cors());
 app.use(express.json({limit: '25mb'}));
@@ -30,7 +30,7 @@ app.use((req,res,next) => {
   });
 
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, 'dist/todolistCalendar/index.html'))
+  res.sendFile(path.join(__dirname, 'dist','todolistCalendar','index.html'))
 })
 
 module.exports = app;
