@@ -45,7 +45,7 @@
   </mat-form-field>
 
 
-    <label for="file">Image</label>
+    <label class="img-label" for="file">Image</label>
     <input
     class="input file-input"
     id="file"
@@ -56,6 +56,7 @@
     accept="image/*"
     #fileInput>
     <button
+    class="img-btn"
     mat-raised-button
     type="button"
     (click)="fileInput.click()"> Select File</button>

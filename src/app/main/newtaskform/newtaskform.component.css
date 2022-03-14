@@ -4,7 +4,7 @@
   justify-content: center;
   padding: 5em 3em 1em;
   box-sizing: border-box;
-  height: 77vh;
+  height: 87vh;
   overflow-y: scroll;
 }
 
@@ -77,4 +77,12 @@ img {
 
 .file-input {
   display: none;
+}
+
+.img-label {
+  color: aliceblue;
+}
+
+.image-preview-container, .image-preview, .img-btn {
+  width: fit-content;
 }
