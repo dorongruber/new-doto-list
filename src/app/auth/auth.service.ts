@@ -14,7 +14,7 @@ export interface AuthResponseData {
 }
 
 const DEV_URI = 'http://localhost:3000/api/task/';
-const PROD_URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
+const PROD_URI = 'https://guarded-sea-67886:3000/api/task/';
 const URI = window.location.hostname === 'localhost' ? DEV_URI : PROD_URI;
 
 @Injectable({providedIn: 'root'})
