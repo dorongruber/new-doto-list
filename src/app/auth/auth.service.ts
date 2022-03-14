@@ -51,7 +51,6 @@ export class AuthService {
         password
       }
     ).pipe(catchError(this.handleError), tap( resData => {
-      console.log('Login authService resData -> ', resData);
       this.handleAuthentication(
         resData.email,
         resData.userId,
@@ -71,13 +70,11 @@ export class AuthService {
     );
     this.user.next(user);
     this.AutoLogout(expiredIn * 1000);
-    console.log('local storage -> ', JSON.stringify(user));
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
   handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'new error in handleError';
-    console.log('handle error -> error -> ', errorRes);
     if (errorRes.message || errorRes.error.message) {
       errorMessage = errorRes.error.message;
     }
@@ -102,7 +99,6 @@ export class AuthService {
       userData._token,
       new Date(userData._tokenExpirationDate)
     );
-    console.log('loadedUser -> ', loadedUser);
     if ( loadedUser.token ) {
       this.user.next(loadedUser);
       const expirationDuration =

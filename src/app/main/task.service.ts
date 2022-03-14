@@ -27,7 +27,6 @@ export class TaskService {
     private calendarService: CalendarService
     ) {
        this.authService.user.subscribe(user => {
-        console.log('new user in service -> ', user);
         if (user) {
           this.SetCurrentUser(user.pass);
         }
@@ -62,17 +61,13 @@ export class TaskService {
         }
 
          if (df) {
-          console.log('df');
           this.InitDayTaskList(this.date).toPromise()
           .then(tasks => {
-            console.log('InitDayTaskList => ', tasks);
-
             this.dayTasksList = [];
             this.dayTasksList.push(...tasks);
             this.dayTAsksChanged.next(this.dayTasksList.slice());
           });
         }
-         console.log('dayTasksList -> ', this.dayTasksList);
       });
     }
 
@@ -87,8 +82,6 @@ export class TaskService {
   }
 
   NewTask(nt: Task) {
-    console.log('new task -> ', nt);
-
     const formData = new FormData();
     formData.append('title', nt.title);
     formData.append('content', nt.content);
@@ -120,7 +113,6 @@ export class TaskService {
 
   // TODO change how i resevie data from http.get
   InitDayTaskList(date: Day) {
-    console.log('InitTaskList');
     const dayId = new Date(date.y, date.m, date.d).getTime();
     const uid = this.currentuser.userid;
     return this.http.get<{tasksList: Task[]}>(`${URI}todaystasks/${dayId}/${uid}`)
@@ -145,8 +137,6 @@ export class TaskService {
     // console.log('InitMonthTaskList -> ', month, uid);
     return this.http.get<{monthTaskList: Task[]}>(`${URI}monthtasks/${month}/${uid}`)
     .pipe(map(resData => {
-      console.log('InitMonthTaskList resData => ', resData);
-
       if (resData && !resData.monthTaskList) {return []; }
       return resData.monthTaskList.map(task => {
         if (new Date(task.date).getDate() === this.date.d) {
@@ -165,7 +155,6 @@ export class TaskService {
   }
 
   getMonthTasks() {
-    console.log('get task function => ', this.mounthTasksList);
     return this.mounthTasksList.slice();
   }
 
