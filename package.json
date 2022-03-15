@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node ./back/config/server",
+    "start": "node ./back/config/server.js",
     "startDev": "ng serve",
     "serve": "nodemon ./back/config/server.js",
     "build": "ng build",
