@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  height: 92vh;
 }
 
 .calendar-content-conteiner {
@@ -41,7 +40,7 @@
 
 
 .title {
-  margin: 0;
+  margin: 0 auto 0 46.2vw;
   line-height: 1.8em;
   opacity: .6;
   color: white;
@@ -53,7 +52,6 @@
   font-size: 35px;
   width: 1em;
   height: 1em;
-  margin-right: 30vw;
   color: white;
 }
 
@@ -84,8 +82,24 @@
   display: none;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 640px) {
+
+  .container {
+    height: 90vh;
+  }
+
   .task-list-container {
-    height: 42vh;
+    height: 34vh;
+  }
+}
+
+@media screen and (min-width: 640px) {
+
+  .container {
+    height: 96vh;
+  }
+
+  .task-list-container {
+    height: 56vh;
   }
 }

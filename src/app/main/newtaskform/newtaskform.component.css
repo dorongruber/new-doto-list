@@ -43,7 +43,7 @@
 }
 
 .title {
-  margin: 0;
+  margin: 0 auto 0 46.2vw;
   line-height: 2em;
   opacity: .6;
   color: white;
@@ -55,7 +55,6 @@
   font-size: 35px;
   width: 1em;
   height: 1em;
-  margin-right: 27vw;
   color: white;
 }
 
@@ -85,4 +84,8 @@ img {
 
 .image-preview-container, .image-preview, .img-btn {
   width: fit-content;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
