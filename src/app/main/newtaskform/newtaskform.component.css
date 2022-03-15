@@ -89,3 +89,9 @@ img {
 ::-webkit-scrollbar {
   display: none;
 }
+
+@media screen and (max-width: 640px) {
+  .title {
+    margin: 0 auto 0 30.2vw;
+  }
+}

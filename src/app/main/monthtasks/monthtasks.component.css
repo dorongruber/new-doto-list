@@ -85,11 +85,15 @@
 @media screen and (max-width: 640px) {
 
   .container {
-    height: 90vh;
+    height: 88vh;
   }
 
   .task-list-container {
     height: 34vh;
+  }
+
+  .title {
+    margin: 0 auto 0 30.2vw;
   }
 }
 
