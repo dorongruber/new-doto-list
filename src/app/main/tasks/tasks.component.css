@@ -79,7 +79,7 @@ img {
 
 @media screen and (max-width: 640px) {
   .tasks-container {
-    height: 86vh;
+    height: 85vh;
   }
 
   .tasks-list-container {
