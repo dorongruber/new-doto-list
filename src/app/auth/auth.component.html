@@ -1,20 +1,24 @@
-<div class="spinner-container" *ngIf="isLoading">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-<div class="auth-component-container" >
-  <div class="header-container" *ngIf="!isLoading">
-    <h3 class="header"> {{ !loadState? 'Fill Feilds To Register' : 'Enter Cradentials To LogIn'}}</h3>
+<ng-container *ngIf="isLoading else Auth">
+  <div class="spinner-container" >
+    <app-loading-spinner></app-loading-spinner>
   </div>
-  <div>
-    <router-outlet></router-outlet>
+</ng-container>
+<ng-template #Auth>
+  <div class="auth-component-container" >
+    <div class="header-container" >
+      <h3 class="header"> {{ !loadState? 'Fill Feilds To Register' : 'Enter Cradentials To LogIn'}}</h3>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="btn-container">
+      <button
+      class="btn main-btn"
+      type="button"
+      (click)="onSelectForm()"
+      mat-raised-button>
+        {{ loadState? 'Register' : 'LogIn'}}
+      </button>
+    </div>
   </div>
-  <div class="btn-container" *ngIf="!isLoading">
-    <button
-    class="btn main-btn"
-    type="button"
-    (click)="onSelectForm()"
-    mat-raised-button>
-      {{ loadState? 'Register' : 'LogIn'}}
-    </button>
-  </div>
-</div>
+</ng-template>

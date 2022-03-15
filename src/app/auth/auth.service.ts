@@ -13,8 +13,8 @@ export interface AuthResponseData {
   expiresIn: number;
 }
 
-const DEV_URI = 'http://localhost:3000/api/task/';
-const PROD_URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
+const DEV_URI = 'http://localhost:8080/api/user/';
+const PROD_URI = 'https://guarded-sea-67886.herokuapp.com/api/user/';
 const URI = window.location.hostname === 'localhost' ? DEV_URI : PROD_URI;
 
 @Injectable({providedIn: 'root'})
