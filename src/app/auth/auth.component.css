@@ -1,9 +1,9 @@
 .auth-component-container {
   background: rgba(255, 255, 255, 0.15);
-  margin: 0 1.5em;
+  margin: 2em auto 0em;
   border-radius: 15px;
   box-shadow: 0px 2px 133px 24px rgba(0,0,0,.75);
-
+  width: 300px;
 }
 
 .header-container {
@@ -41,38 +41,20 @@
   text-align: center;
 }
 
-@media only screen and (min-width: 260px) {
-  .btn,.header-container {
-   font-size: 1em;
-  }
+:host ::ng-deep .mat-form-field-wrapper {
+  width: -webkit-fill-available;
+
 }
 
-@media only screen and (min-width: 550px) {
-  .btn,.header-container {
-   font-size: 1.3em;
-  }
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0.25em 2em;
 }
 
-@media only screen and (min-width: 850px) {
-
-  .auth-component-container {
-    margin: 2em 31.5em 0em;
-  }
+@media only screen and (min-width: 650px) {
 
   .header-container {
     display: flex;
     justify-content: center;
     margin: 0;
-  }
-
-  .btn,.header-container {
-    font-size: 1em;
-   }
-}
-
-
-@media only screen and (min-width: 850px) {
-  :host ::ng-deep .mat-form-field-wrapper {
-    width: 70%;
   }
 }
