@@ -18,8 +18,8 @@ import { AuthResponseData, AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
   isLoading = false;
-  authForm: FormGroup;
-  error: string = null;
+  authForm!: FormGroup;
+  error: string | null = null;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -56,13 +56,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form: any) {
 
     if (!form.valid) {
-      console.log('invalide form -> ', form);
+      return;
     }
     this.isLoading = true;
-    console.log('register form -> ', form);
     const name = form.value.name;
     const email = form.value.email;
     const phone = form.value.phone;
@@ -71,9 +70,7 @@ export class RegisterComponent implements OnInit {
     let authObs: Observable<{message: boolean}>;
 
     authObs = this.authService.Register(name, phone, email, password);
-    console.log('autb observable -> ', authObs);
     // add new user to db
-
     authObs.subscribe(resData => {
       if (resData) {
         this.isLoading = false;
@@ -96,7 +93,7 @@ export const PassValidator: ValidatorFn = (control:
     const pass = control.get('password');
     const confpass = control.get('confirmpassword');
     // console.log('custom validator -> ', pass, confpass);
-    if (( pass.value  !== confpass.value) && pass && confpass) {
+    if ( pass && confpass && ( pass.value  !== confpass.value)) {
       return {NotEqualPasswords: true};
     }
     return null;

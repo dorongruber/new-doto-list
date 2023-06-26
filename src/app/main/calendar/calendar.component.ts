@@ -10,8 +10,8 @@ import { Task } from '../task.model';
 })
 export class CalendarComponent implements OnInit, OnChanges {
 
-  @Input() calendartasksList: Task[];
-  @Input() currentRoute: string;
+  @Input() calendartasksList!: Task[];
+  @Input() currentRoute!: string;
   constructor() { }
 
   ngOnInit() {}

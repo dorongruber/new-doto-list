@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Task } from 'src/app/main/task.model';
 import { TaskService } from 'src/app/main/task.service';
@@ -12,9 +12,9 @@ import { EventfullscreendialogComponent } from '../eventfullscreendialog/eventfu
 })
 export class CarditemComponent implements OnChanges {
 
-  @Input()task: Task;
-  @Input()index: number;
-  @Input() row: string;
+  @Input()task!: Task;
+  @Input()index!: number;
+  @Input() row!: string;
   constructor(
     private sanitizer: DomSanitizer,
     private taskService: TaskService,
@@ -39,7 +39,6 @@ export class CarditemComponent implements OnChanges {
 
     dialogRef.afterClosed()
     .subscribe(result => {
-      console.log('close dialog => ', result);
     });
   }
 

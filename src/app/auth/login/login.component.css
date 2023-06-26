@@ -9,10 +9,6 @@
   margin-top: 10px;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-  padding: 1em 1.5em !important;
-}
-
 input {
   color: white;
 }

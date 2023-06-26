@@ -11,7 +11,7 @@ import { TaskService } from '../task.service';
 })
 export class TasksComponent implements OnInit, OnDestroy {
   toDaysTasks: Task[] = [];
-  listSubscription: Subscription;
+  listSubscription!: Subscription;
   NTasks: Task[] = [];
   RTasks: Task[] = [];
   GTasks: Task[] = [];
@@ -34,17 +34,17 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   RotateRight(list: Task[]) {
     const last = list.pop();
-    list.unshift(last);
+    if(last)
+      list.unshift(last);
   }
 
   RotateLeft(list: Task[]) {
     const first = list.shift();
-    list.push(first);
+    if(first)
+      list.push(first);
   }
 
   FilterList(filter: string) {
-    console.log('FilterList ', filter, this.toDaysTasks);
-
     return this.toDaysTasks.filter(t => t.color === filter).slice();
   }
 

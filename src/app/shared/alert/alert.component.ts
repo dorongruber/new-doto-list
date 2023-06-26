@@ -7,7 +7,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
 
-  @Input() message: string;
+  @Input() message!: string;
   constructor() { }
 
   ngOnInit() {

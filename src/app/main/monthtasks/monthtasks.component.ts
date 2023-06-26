@@ -13,7 +13,7 @@ export class MonthtasksComponent implements OnInit, OnDestroy {
   isLoading = false;
 
   monthTasksList: Task[] = [];
-  montSubscription: Subscription;
+  montSubscription!: Subscription;
   constructor(
     private authService: AuthService,
     private taskService: TaskService
@@ -32,7 +32,6 @@ export class MonthtasksComponent implements OnInit, OnDestroy {
     if ( this.monthTasksList.length > 0 ) {
       this.isLoading = false;
     }
-    // console.log('this.monthTasksList subscribe -> ', this.monthTasksList);
   }
 
   onLogout() {

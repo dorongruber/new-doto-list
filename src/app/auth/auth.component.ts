@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit, OnDestroy {
   // selects with for to show -> false === login, true === register
   loadState = true;
-  formStateSub: Subscription;
+  formStateSub!: Subscription;
   isLoading = false;
   constructor(
     private router: Router,

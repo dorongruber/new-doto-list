@@ -4,8 +4,11 @@ import { Day } from './day.model';
 
 @Injectable({providedIn: 'root'})
 export class CalendarService {
-  currentDate: Day;
-  changedDate = new BehaviorSubject<Day>(null);
+  defaultDate: Date = new Date();
+  currentDate!: Day;
+  changedDate = new BehaviorSubject<Day>(
+    new Day(this.defaultDate.getDate(), this.defaultDate.getMonth(), this.defaultDate.getFullYear())
+    );
 
   constructor() {
     const date = new Date();

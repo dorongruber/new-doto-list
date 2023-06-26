@@ -21,7 +21,7 @@ const URI = window.location.hostname === 'localhost' ? DEV_URI : PROD_URI;
 export class AuthService {
 
   loadingObs = new Subject<boolean>();
-  user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<User | null>(null);
   private tokenExpirationTimer: any;
   constructor(
     private http: HttpClient,
@@ -82,16 +82,15 @@ export class AuthService {
   }
 
   AutoLogin() {
-
+    const userDataStr = localStorage.getItem('userData');
+    if(!userDataStr)
+      return;
     const userData: {
       name: string;
       pass: string;
       _token: string;
       _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
-    if (!userData) {
-      return;
-    }
+    } = JSON.parse(userDataStr);
 
     const loadedUser = new User(
       userData.name,

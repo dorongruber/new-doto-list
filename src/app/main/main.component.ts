@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatIcon } from '@angular/material/icon';
-import { ControlsService } from './controls.service';
 
 @Component({
   selector: 'app-main',
@@ -12,35 +11,15 @@ import { ControlsService } from './controls.service';
 export class MainComponent implements OnInit {
 
   isLoading = false;
-  lastIndex: number;
+  lastIndex!: number;
   routesList = [false, false, false];
 
   constructor(
-    private controlsService: ControlsService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    // this.opened = this.controlsService.GetSidenavState();
-    // this.sideNavChanged = this.controlsService.sidenavOpenChanged
-    //   .subscribe( res => {
-    //     console.log('subscribe res -> ', res);
-    //     this.opened = res;
-    //     if (!res) {
-    //       this.routesList[0] = false;
-    //       this.routesList[1] = false;
-    //     }
-    //   });
-    // this.isLoading = true;
-    // this.monthTasksList = this.taskService.GetTasks();
-    // this.montSubscription = this.taskService.mounthTAsksChanged
-    //   .subscribe(tasks => {
-    //     console.log('new color task -> ', tasks);
-    //     this.monthTasksList = [];
-    //     this.monthTasksList.push(...tasks);
-    //     console.log('this.monthTasksList subscribe -> ', this.monthTasksList);
-    // });
     this.isLoading = false;
     this.routesList[2] = true;
     this.lastIndex = 2;

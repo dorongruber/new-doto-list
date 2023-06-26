@@ -10,10 +10,10 @@ import { Day } from '../../day.model';
   styleUrls: ['./daycalendar.component.css']
 })
 export class DaycalendarComponent implements OnInit, OnDestroy {
-  cd: Day;
+  cd!: Day;
   monthsList: {m: string, nd: number}[] = [];
 
-  dateSubscription: Subscription;
+  dateSubscription!: Subscription;
   constructor(
     private calendarService: CalendarService
   ) { }

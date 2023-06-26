@@ -12,10 +12,10 @@ import { TaskService } from '../../task.service';
 export class MonthcalendarComponent implements OnInit, OnChanges, AfterViewInit {
   monthsList: {m: string, nd: number}[] = [];
   daysList: {n: string}[] = [];
-  days: number[] = [];
+  days: any[] = [];
   MLsize = 11;
-  cd: {d: number, m: number, y: number};
-  @Input()monthTasksList: Task[];
+  cd!: {d: number, m: number, y: number};
+  @Input()monthTasksList!: Task[];
 
   constructor(
     private taskService: TaskService,
@@ -30,7 +30,6 @@ export class MonthcalendarComponent implements OnInit, OnChanges, AfterViewInit 
       console.log('calendar cd -> ', this.cd);
       if (this.cd !== undefined && date !== undefined) {
         if (this.cd.m !== date.m) {
-          console.log('?????????');
           this.RemoveMarks();
         }
       }
@@ -163,13 +162,13 @@ export class MonthcalendarComponent implements OnInit, OnChanges, AfterViewInit 
 
   MarkDayOnCalendar(day: number) {
     console.log('dat => ', day);
-    document.getElementById(day.toString()).style.fontSize = '20px';
-    document.getElementById(day.toString()).style.color = 'black';
+    document.getElementById(day.toString())!.style.fontSize = '20px';
+    document.getElementById(day.toString())!.style.color = 'black';
   }
 
   UnMarkDayOnCalendar(day: number) {
-    document.getElementById(day.toString()).style.fontSize = '15px';
-    document.getElementById(day.toString()).style.color = 'white';
+    document.getElementById(day.toString())!.style.fontSize = '15px';
+    document.getElementById(day.toString())!.style.color = 'white';
   }
 
   SetMonthInCalendar(year: number, month: number, c: number) {

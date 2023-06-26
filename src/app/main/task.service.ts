@@ -13,9 +13,9 @@ const PROD_URI = 'https://guarded-sea-67886.herokuapp.com/api/task/';
 const URI = window.location.hostname === 'localhost' ? DEV_URI : PROD_URI;
 @Injectable({providedIn: 'root'})
 export class TaskService {
-  currentuser: {userid: string};
-  date: Day;
-  userChanged: Subscription;
+  currentuser!: {userid: string};
+  date!: Day;
+  userChanged!: Subscription;
   dayTasksList: Task[] = [];
   dayTAsksChanged = new BehaviorSubject<Task[]>([]);
   mounthTasksList: Task[] = [];
@@ -55,6 +55,8 @@ export class TaskService {
           this.InitMonthTaskList(this.date).toPromise()
           .then(tasks => {
             this.mounthTasksList = [];
+            if(tasks == undefined)
+              return;
             this.mounthTasksList.push(...tasks);
             this.mounthTAsksChanged.next(this.mounthTasksList.slice());
           });
@@ -64,6 +66,8 @@ export class TaskService {
           this.InitDayTaskList(this.date).toPromise()
           .then(tasks => {
             this.dayTasksList = [];
+            if(tasks == undefined)
+              return;
             this.dayTasksList.push(...tasks);
             this.dayTAsksChanged.next(this.dayTasksList.slice());
           });
@@ -134,7 +138,6 @@ export class TaskService {
   InitMonthTaskList(date: Day) {
     const month = JSON.stringify(date.m);
     const uid = this.currentuser.userid;
-    // console.log('InitMonthTaskList -> ', month, uid);
     return this.http.get<{monthTaskList: Task[]}>(`${URI}monthtasks/${month}/${uid}`)
     .pipe(map(resData => {
       if (resData && !resData.monthTaskList) {return []; }

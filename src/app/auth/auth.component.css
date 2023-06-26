@@ -58,3 +58,12 @@
     margin: 0;
   }
 }
+
+:host() ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 1.5em !important;
+}
+
+:host() ::ng-deep .mat-mdc-text-field-wrapper {
+  width: -webkit-fill-available;
+  margin: 0 1.5em;
+}

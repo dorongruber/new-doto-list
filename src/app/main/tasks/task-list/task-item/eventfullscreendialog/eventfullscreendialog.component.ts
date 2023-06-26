@@ -10,9 +10,9 @@ import { Task } from 'src/app/main/task.model';
 })
 export class EventfullscreendialogComponent implements OnInit {
 
-  day: number;
-  month: number;
-  year: number;
+  day!: number;
+  month!: number;
+  year!: number;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -21,7 +21,6 @@ export class EventfullscreendialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('data => ', this.data);
     const date = new Date(this.data.date);
     this.day = date.getDate();
     this.month = date.getMonth();

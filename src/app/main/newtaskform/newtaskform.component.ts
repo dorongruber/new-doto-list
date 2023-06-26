@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { Subscription } from 'rxjs';
 import { CalendarService } from '../calendar.service';
-import { ControlsService } from '../controls.service';
 import { Day } from '../day.model';
 import { ImageSnippet } from '../imagesnippet.model';
 import { Task } from '../task.model';
@@ -20,13 +19,13 @@ import { TaskService } from '../task.service';
   styleUrls: ['./newtaskform.component.css']
 })
 export class NewtaskformComponent implements OnInit, OnDestroy {
-  @ViewChild('taskForm', {static: false})form: FormGroup;
+  @ViewChild('taskForm', {static: false}) form!: FormGroup;
   list: Task[] = [];
-  currentDate: Day;
-  changedDateSub: Subscription;
-  taskForm: FormGroup;
-  dateStr: string;
-  selectedFile: ImageSnippet;
+  currentDate!: Day;
+  changedDateSub!: Subscription;
+  taskForm!: FormGroup;
+  dateStr!: string;
+  selectedFile!: ImageSnippet;
   sf = false;
   temp: any;
   constructor(
@@ -72,10 +71,8 @@ export class NewtaskformComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit(form: NgForm) {
-    console.log('new event -> ', form.value, this.currentDate);
+  onSubmit(form: any) {
     const date = new Date(this.currentDate.y, this.currentDate.m, this.currentDate.d);
-    console.log('date element -> ', this.currentDate.y, this.currentDate.m, this.currentDate.d);
 
     if (!this.sf ) {
       const emptyFile = new File([], 'emptyfile');

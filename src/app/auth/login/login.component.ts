@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   isLoading = false;
 
-  authForm: FormGroup;
-  error: string = null;
+  authForm!: FormGroup;
+  error: string | null = null;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
       ])
     });
   }
-  onSubmit(form: NgForm) {
+  onSubmit(form: any) {
     // submit form
-    console.log('auth form -> ', this.authForm);
     this.isLoading = true;
     let authObs: Observable<AuthResponseData>;
 

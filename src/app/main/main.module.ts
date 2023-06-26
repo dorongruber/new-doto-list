@@ -69,6 +69,6 @@ import { EventfullscreendialogComponent } from './tasks/task-list/task-item/even
     Ng2ImgMaxService,
   ],
   exports: [],
-  entryComponents: [EventfullscreendialogComponent]
+  bootstrap: [EventfullscreendialogComponent],
 })
 export class MainModule {}

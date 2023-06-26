@@ -12,16 +12,16 @@ import { AfterViewInit, Directive,
   selector: '[appPosition]'
 })
 export class PositionDirective implements OnChanges, AfterViewInit {
-  @Input('appPosition') index: number;
-  @Input() elementRow: string;
+  @Input('appPosition') index!: number;
+  @Input() elementRow!: string;
   @HostBinding('style.zIndex')zIndex = '100';
-  currentEl: HTMLElement;
+  currentEl: HTMLElement | null = null;
   constructor(
     private el: ElementRef<HTMLElement>,
     private renderer: Renderer2) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-      if (changes.index !== undefined && window.innerWidth <= 650) {
+      if (changes['index'] !== undefined && window.innerWidth <= 650) {
         this.zIndex = `${100 + this.index}`;
       }
   }
@@ -44,8 +44,10 @@ export class PositionDirective implements OnChanges, AfterViewInit {
     }
   }
 
-  initCarousel(index) {
+  initCarousel(index: number) {
     this.currentEl = this.el.nativeElement.querySelector(`.card-container.${this.elementRow}`);
+    if(this.currentEl == null)
+      return;
     if (index === 0) {
       this.setCurrentElementStyle(this.currentEl, 'translatex(0) scale(1)', '1', 200);
     } else {

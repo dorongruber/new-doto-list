@@ -16,7 +16,7 @@
     >
   </mat-form-field>
 
-  <ng-container  *ngIf="(!taskForm.get('date').untouched)">
+  <ng-container  *ngIf="(!taskForm.get('date')!.untouched)">
     <div class="input-calendar-container">
       <app-calendar [calendartasksList]="list" [currentRoute]="'month'"></app-calendar>
     </div>
