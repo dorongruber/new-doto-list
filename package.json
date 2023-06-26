@@ -6,7 +6,7 @@
     "start": "node ./back/config/server.js",
     "startDev": "ng serve",
     "serve": "nodemon ./back/config/server.js",
-    "build": "ng build --prod",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
