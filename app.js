@@ -30,7 +30,7 @@ app.use((req,res,next) => {
   });
 
 app.get('*', (req,res) => {
-  res.sendFile(path.join(__dirname, 'dist','todolistCalendar','index.html'))
+  res.sendFile(path.join(__dirname, 'dist','todo','index.html'))
 })
 
 module.exports = app;
