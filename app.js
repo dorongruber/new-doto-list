@@ -8,7 +8,7 @@ const taskRouter = require('./back/routers/tasks');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'dist','todolistCalendar')));
+app.use(express.static(path.join(__dirname, 'dist','todo')));
 
 app.use(cors());
 app.use(express.json({limit: '25mb'}));
