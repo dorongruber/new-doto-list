@@ -65,5 +65,5 @@
 
 :host ::ng-deep .mat-mdc-text-field-wrapper {
   width: -webkit-fill-available;
-  margin: 0 1.5em;
+  margin: 0 2.5em;
 }

@@ -1,25 +1,21 @@
-const Task = require('../models/Task');
 const fs = require('fs');
 const path = require('path');
-const mongoose =require('mongoose');
+const sharp = require("sharp");
+
+const Task = require('../models/Task');
+
 class TaskService {
 
   constructor() {}
 
   addTask = async function(title, content, taskDate,color,id,userid,img) {
     try {
-      let imageFile;
       const dt = new Date(taskDate);
-      const checkIdRef = mongoose.Types.ObjectId(userid);
-      const task = await Task.findOne({date: dt, title: title,content: content, userRef: checkIdRef});
+      const task = await Task.findOne({date: dt, title: title,content: content, userRef: userid});
       if (task) {
         return new Error('task all ready exists')
       }
-      if (img.filename !== 'emptyfile') {
-        imageFile = fs.readFileSync(path.join('./public/uploads/' + img.file.filename));
-      } else {
-        imageFile = fs.readFileSync(path.join('./public/uploads/default.jpg'));
-      }
+      const imageFile = await this.processImage(img);
       const newTask = new Task({
         id,
         userRef: checkIdRef,
@@ -51,8 +47,7 @@ class TaskService {
 
   getSingleDateTasks = async function(dayId,uid) {
     try{
-      const uidRef = mongoose.Types.ObjectId(uid);
-      const tasks = await Task.find({id:parseInt(dayId),userRef:uidRef});
+      const tasks = await Task.find({id:parseInt(dayId),userRef:uid});
       let tasksList = [];
       tasks.forEach(task => {
         const imageFile = task.img.data.toString('base64');
@@ -75,8 +70,7 @@ class TaskService {
 
   getSingleMonthTasks = async function(month,userId) {
     try{
-      const uidRef = mongoose.Types.ObjectId(userId);
-      const tasks = await Task.find({userRef:uidRef});
+      const tasks = await Task.find({userRef:userId});
       let monthTaskList = [];
       for (const task of tasks) {
         const taskMonth = JSON.stringify(task.date.getMonth());
@@ -88,6 +82,24 @@ class TaskService {
      }catch(err) {
        throw err;
      }
+  }
+
+  async processImage(img) {
+    const { buffer, originalname } = img;
+    if(originalname == "emptyFile") {
+      return Buffer.from('');
+    }
+    const imagesPath = path.join(".","public","images");
+    fs.access(imagesPath, (error) => {
+      if (error) {
+        fs.mkdirSync(imagesPath);
+      }
+    });
+    
+    await sharp(buffer).resize({width: 150, height: 150}).jpeg({ quality: 85 })
+    .toFile(path.join(imagesPath, originalname));
+    return await sharp(path.join(imagesPath, originalname)).toBuffer();
+    
   }
 }
 

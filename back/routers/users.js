@@ -18,7 +18,7 @@ function Login(req,res,next) {
     res.status(200).send(user);
   })
   .catch(err => {
-    res.status(401).send({message: err});
+    res.status(500).send({message: err});
   })
 }
 
@@ -29,7 +29,7 @@ function Register(req,res,next) {
     res.status(200).send(processStatus);
   })
   .catch(err => {
-    res.status(401).send({message: err});
+    res.status(500).send({message: err});
   })
 }
 
@@ -40,6 +40,6 @@ function getUser(req,res,next) {
     res.status(200).send(user);
   })
   .catch(err => {
-    res.status(401).send({message: err});
+    res.status(500).send({message: err});
   })
 }

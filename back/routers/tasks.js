@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 const { upload } = require('../middlewares/multer');
 const { taskService } = require('../services/tasks');
+const { AuthenticateToken } = require('../middlewares/auth');
 
 // const upload = multer({dest: __dirname + '/uploads/'});
 
-router.post('/newtask', upload.single('img') , addTask)
+router.post('/newtask', AuthenticateToken, upload.single('img') , addTask)
 
-router.get('/todaystasks/:dayId/:uid', getSingleDateTasks)
+router.get('/todaystasks/:dayId/:uid',AuthenticateToken, getSingleDateTasks)
 
-router.get('/monthtasks/:month/:userId', getSingleMonthTasks)
+router.get('/monthtasks/:month/:userId',AuthenticateToken, getSingleMonthTasks)
 
 module.exports = router;
 
@@ -21,7 +22,7 @@ function addTask(req,res,next) {
     res.status(200).send(newTask);
   })
   .catch(err => {
-    res.status(401).send({meassage: err});
+    res.status(500).send({meassage: err});
   })
 }
 
@@ -32,7 +33,7 @@ function getSingleDateTasks(req,res,next) {
     res.status(200).send({tasksList: singleDateTasks});
   })
   .catch(err => {
-    res.status(401).send({message: err});
+    res.status(500).send({message: err});
   })
 }
 
@@ -43,6 +44,6 @@ function getSingleMonthTasks(req,res,next) {
     res.status(200).send({monthTaskList: singleMonthTasks});
   })
   .catch(err => {
-    res.status(401).send({message: err});
+    res.status(500).send({message: err});
   })
 }

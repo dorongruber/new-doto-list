@@ -1,8 +1,16 @@
-<ul class="container ">
+<!-- <ul class="container ">
   <li class="month position">{{monthsList[cd.m].m}}</li>
   <div class="change-date-container">
     <li (click)="Perv()" class="perv position">&#10094;</li>
     <li class="date position">{{cd.d}}</li>
     <li (click)='Next()' class="next position">&#10095;</li>
   </div>
-</ul>
+</ul> -->
+<header>
+  <h1>{{monthsList[cd.m].m}}</h1>
+  <div class="change-date-container">
+    <span (click)="Perv()" class="perv position"> &#10094; </span>
+    <span class="date position"> {{cd.d}} </span>
+    <span (click)='Next()' class="next position"> &#10095; </span>
+  </div>
+</header>

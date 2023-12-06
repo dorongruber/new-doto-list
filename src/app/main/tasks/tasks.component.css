@@ -1,44 +1,7 @@
-.container {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0em;
-  list-style-type: none;
-  padding-inline-start: 0;
-  background: rgb(55, 58, 80);
-}
-
-ul {
-  list-style-type: none;
-}
-
-.perv , .next {
-  font-size: 23px;
-  cursor: pointer;
-  margin: .8em .9em;
-  color: white;
-}
-
-.date {
-  position: relative;
-  top: 3vh;
-  font-size: 24px;
-  color: white;
-  height: 1em;
-}
-
-.month {
-  position: relative;
-  top: 4vh;
-  font-size: 20px;
-  color: white;
-  opacity: 0.7;
-}
-
 .tasks-list-container {
   display: flex;
   overflow-x: scroll;
 }
-
 
 .icon  {
   position: relative;
@@ -55,7 +18,7 @@ ul {
 }
 
 .tasks-container {
-  height: 84vh;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -74,10 +37,13 @@ img {
   margin: 1em;
 }
 
+:host app-calendar {
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+}
+
 @media screen and (max-width: 640px) {
-  .tasks-container {
-    height: 85vh;
-  }
 
   .tasks-list-container {
     margin: 0 4vw;
@@ -91,10 +57,6 @@ img {
 }
 
 @media only screen and (min-width: 640px) {
-
-  .tasks-container {
-    height: 96vh;
-  }
 
   .icon {
     display: none;

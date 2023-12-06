@@ -3,7 +3,7 @@
   <app-calendar [calendartasksList]="toDaysTasks" [currentRoute]="'day'"></app-calendar>
   <h3>General Events:</h3>
   <ng-container *ngIf="NTasks.length === 0">
-    <img src="../../../assets/images/empty.png">
+    <img [src]=defualtImage>
   </ng-container>
   <ng-container *ngIf="NTasks.length > 0">
       <div class="tasks-list-container">
@@ -14,7 +14,7 @@
   </ng-container>
   <h3> Work Marked Events:</h3>
   <ng-container *ngIf="RTasks.length === 0">
-    <img src="../../../assets/images/empty.png">
+    <img [src]=defualtImage>
   </ng-container>
   <ng-container *ngIf="RTasks.length > 0">
       <div class="tasks-list-container">
@@ -25,7 +25,7 @@
   </ng-container>
   <h3> Vacation Marked Events:</h3>
   <ng-container *ngIf="GTasks.length === 0">
-    <img src="../../../assets/images/empty.png">
+    <img [src]=defualtImage>
   </ng-container>
   <ng-container *ngIf="GTasks.length > 0">
       <div class="tasks-list-container">
@@ -36,7 +36,7 @@
   </ng-container>
   <h3> Family Marked Events:</h3>
   <ng-container *ngIf="YTasks.length === 0">
-    <img src="../../../assets/images/empty.png">
+    <img [src]=defualtImage>
   </ng-container>
   <ng-container *ngIf="YTasks.length > 0">
       <div class="tasks-list-container">

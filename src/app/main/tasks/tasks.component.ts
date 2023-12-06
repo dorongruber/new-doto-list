@@ -10,6 +10,7 @@ import { TaskService } from '../task.service';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit, OnDestroy {
+  defualtImage: string = "../../../assets/images/empty.png";
   toDaysTasks: Task[] = [];
   listSubscription!: Subscription;
   NTasks: Task[] = [];

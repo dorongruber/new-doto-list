@@ -1,14 +1,14 @@
-function AuthenticateToken(req, res, next) {
-  const authHeader = req.header['authorization'];
-  const token = authHeader && authHeader.splice(' ')[1];
+const jwt = require('jsonwebtoken');
 
-  if ( token == null) res.sendStatus(401);
+module.exports.AuthenticateToken = function AuthenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
-  jwt.verify(token, process,env.ACCESS_TOKEN_SECRET, (err, user) => {
+  if (token == null) res.sendStatus(401);
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
     next();
   })
 }
-
-module.exports.AuthenticateToken = AuthenticateToken;

@@ -1,87 +1,40 @@
-.container {
+header {
   display: flex;
-  margin: 0em;
-  list-style-type: none;
-  padding-inline-start: 0;
+  gap: 10%;
   background: rgb(55, 58, 80);
+  padding-inline: 25px;
+  align-items: baseline;
 }
 
-ul {
-  list-style-type: none;
+.change-date-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .perv , .next {
-  font-size: 23px;
+  font-size: 24px;
   cursor: pointer;
-  margin: .8em .9em;
   color: white;
 }
 
 .date {
   position: relative;
-  top: 3vh;
   font-size: 24px;
   color: white;
-  height: 1em;
 }
 
-.month {
+h1 {
   position: relative;
-  top: 3vh;
-  font-size: 30px;
   color: white;
   opacity: 0.7;
 }
 
 @media only screen and (max-width: 650px) {
-  .container {
-    justify-content: space-evenly;
+  header {
+    gap: 0;
+    justify-content: space-between;
   }
 
-  .change-date-container {
-    display: flex;
-  }
-}
-
-@media only screen and (min-width: 650px) {
-
-  .date {
-    top: 2vh;
-    font-size: 30px;
-  }
-
-  img {
-    height: 60vh;
-  }
-
-}
-
-@media only screen and (min-width: 850px) {
-
-  .change-date-container {
-    display: flex;
-    margin-left: 5vw;
-  }
-
-  .date {
-    top: unset;
-    margin: .8em 0;
-  }
-
-  .month {
-    top: 0;
-    margin-left: 2em;
-  }
-
-  .position {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-  }
-
-  img {
-    height: 60vh;
-  }
 
 }
